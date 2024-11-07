@@ -1,30 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <title>FeedTrack</title>
-</head>
-<body>
+
             <!-- Dashboard Content -->
             <div class="dashboard">
                 <!-- Inventory Chart -->
-                <div class="card card-inventory">
+                <a onclick="loadContent('report2', this)"><div class="card card-inventory">
                     <h2>Inventory</h2>
-                </div>
+                </div></a>
                 <!-- Sales Chart -->
-                <div class="card card-sales">
+                <a onclick="loadContent('report3', this)"><div class="card card-sales">
                     <h2>Sales</h2>
-                </div>
+                </div></a>
                 <!-- Forecasting Chart -->
-                <div class="card card-forecasting">
+                <a onclick="loadContent('report4', this)"><div class="card card-forecasting">
                     <h2>Forecasting</h2>
-                </div>
+                </div></a>
                 <!-- Cost Chart -->
-                <div class="card card-cost">
+                <a onclick="loadContent('report5', this)"><div class="card card-cost">
                     <h2>Cost</h2>
-                </div>
+                </div></a>
             </div>
         </div>
 
@@ -32,6 +24,7 @@
 
     /* Dashboard grid layout */
     .dashboard {
+        width: 100%;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 20px;
@@ -47,6 +40,3 @@
         text-align: center;
     }
     </style>
-
-</body>
-</html>

@@ -111,6 +111,7 @@
             padding-left: 10px;
             font-size: 0.9em;
             margin:auto;
+            width:200px;
         }
 
         .activity-date {
@@ -120,14 +121,8 @@
         
         .account-email {
             font-size: 0.8em;
-        }
-
-        .activity-btn {
-            background-color: #b8e994;
-            border: 1px solid #000;
-            padding: 5px 10px;
-            font-size: 0.8em;
-            cursor: pointer;
+            display: flex;
+            align-items: center;
         }
 
         .search-bar {
@@ -148,17 +143,4 @@
             display: flex;
             gap: 5px;
         }
-
-        .account-actions .btn {
-            padding: 5px 10px;
-            border: 1px solid #000;
-            font-size: 0.8em;
-            cursor: pointer;
-            color: #fff;
-        }
-
-        .btn-privilege { background-color: #f39c12; }
-        .btn-suspend { background-color: #c0392b}
-        .btn-resume { background-color: #27ae60; }
-        .btn-delete { background-color: #c0392b; }
     </style>

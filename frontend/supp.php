@@ -89,7 +89,7 @@
         
         /* Inventory Panel */
         .inventory-panel {
-            width: 1400px;
+            width: 100%;
             background-color: #f4f1df;
             padding: 20px;
             border-radius: 8px;
@@ -102,7 +102,7 @@
             align-items: center;
             background-color: #e0d7b0;
             padding: 10px;
-            border-bottom: 2px solid #706c61;
+            border: 2px solid #706c61;
         }
 
         .inventory-header h3 {
@@ -121,6 +121,7 @@
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            border: 1px solid #706c61;
         }
         /* Inventory Table */
         .inventory-table {
@@ -149,6 +150,7 @@
             font-size: 0.8em;
             cursor: pointer;
             color: #fff;
+            margin:5px;
         }
 
         .btn-edit { background-color: #27ae60; }

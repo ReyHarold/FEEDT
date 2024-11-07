@@ -1,0 +1,36 @@
+.other-activities-button, .activity-btn {
+    padding: 8px;
+    background-color: #dcedc8;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.add-item-btn {
+    padding: 5px 15px;
+    background-color: #a2e26a;
+    color: #333;
+    border: 1px solid #706c61;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.account-actions .btn {
+    padding: 5px 10px;
+    border: 1px solid #000;
+    font-size: 0.8em;
+    cursor: pointer;
+    color: #fff;
+    margin:5px;
+}
+
+.btn-privilege { background-color: #f39c12; }
+.btn-suspend { background-color: #c0392b}
+.btn-resume { background-color: #27ae60; }
+.btn-delete { background-color: #c0392b; }
+.btn-edit { background-color: #27ae60; }
+.btn-delete { background-color: #c0392b; }

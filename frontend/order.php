@@ -1,20 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <title>FeedTrack</title>
-</head>
-<body>
-        <div class="Order-panel">
-            <div class="Order-header">
+        <div class="panel">
+            <div class="header">
                 <h3>Feed Mill Order</h3>
-                <div class="Order-actions">
+                <div class="actions">
                     <button class="add-item-btn">Add Item</button>
                 </div>
             </div>
-            <table class="Order-table">
+            <table class="table">
                 <thead>
                     <tr>
                     <th>Responsible</th>
@@ -118,83 +109,3 @@
                 </tr>
             </tbody>
     </div>
-    <style>
-
-        /* Order Panel */
-        .Order-panel {
-            width: 1400px;
-            background-color: #f4f1df;
-            padding: 20px;
-            border-radius: 8px;
-            border: 2px solid #706c61;
-        }
-
-        .Order-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #e0d7b0;
-            padding: 10px;
-            border-bottom: 2px solid #706c61;
-        }
-
-        .Order-header h3 {
-            font-size: 1.2em;
-            color: #333;
-        }
-
-        .Order-actions {
-            display: flex;
-            align-items: center;
-        }
-
-        .add-item-btn {
-            padding: 5px 15px;
-            background-color: #a2e26a;
-            color: #333;
-            border: 1px solid #706c61;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* Order Table */
-        .Order-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-        }
-
-        .Order-table th,
-        .Order-table td {
-            padding: 10px;
-            text-align: center;
-            border: 1px solid #706c61;
-        }
-
-        .Order-table th {
-            background-color: #e0d7b0;
-            font-size: 1em;
-            color: #333;
-        }
-
-        .Order-table td {
-            font-size: 1em;
-            color: #333;
-        }
-
-        /* Action Buttons */
-
-        .account-actions .btn {
-            padding: 5px 10px;
-            border: 1px solid #000;
-            font-size: 0.8em;
-            cursor: pointer;
-            color: #fff;
-        }
-
-        .btn-edit { background-color: #27ae60; }
-        .btn-delete { background-color: #c0392b; }
-    </style>
-</body>
-</html>

@@ -122,15 +122,4 @@
             display: flex;
             justify-content: space;
         }
-
-        .other-activities-button {
-            padding: 8px;
-            background-color: #dcedc8;
-            color: black;
-            border: 1px solid black;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-
-        }
     </style>
