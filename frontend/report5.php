@@ -6,15 +6,6 @@
     <title>Report3</title>
 </head>
 <body>
-    <header>
-        <h1>FeedTrack</h1>
-    </header>
-
-
-
-<!-- Main Content -->
-<main>
-<div class="main-content">
     <div class="user-panel">
         <div class="user-panel-header">
         <div class="graph-checkbox">
@@ -127,16 +118,8 @@
                     </tbody>
     </table>
     <button class="Print-button">Print</button>
-    </main>
 
     <style>
-    .main-content {
-        flex: 1;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
     header {
     background-color: #63d067;
     color: white;

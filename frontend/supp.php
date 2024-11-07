@@ -7,16 +7,6 @@
     <title>FeedTrack</title>
 </head>
 <body>
-    <header>
-        <h1>FeedTrack</h1>
-    </header>
-    <aside>
-    <?php
-    include "side-nav.php";
-    ?>
-    </aside>
-    <main>
-    <div class="main-content">
         <div class="inventory-panel">
             <div class="inventory-header">
                 <h3>Feed Mill Suppliers</h3>
@@ -95,16 +85,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    </main>
     <style>
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
         
         /* Inventory Panel */
         .inventory-panel {

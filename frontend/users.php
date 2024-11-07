@@ -1,42 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
-    <title>FeedTrack</title>
-</head>
-<body>
-    <header>
-        <h1>FeedTrack</h1>
-    </header>
-    <?php
-    include "side-nav.php";
-    ?>
-    <main>
-
-  
     <div class="box">
             <h2>Recent Activities</h2>
             <div class="activity">
-                <img src="profile1.png" alt="Profile">
+                <div class="profile"><img src="profile1.png" alt="Profile">
                 <div class="activity-info">Rey Harold Matanguihan </div>
+                </div>
                 <div class="activity-email">Reyharold@gmail.com</div>
                 <div class="activity-date">2024 - 4 - 13</div>
             </div>
             <div class="activity">
-                <img src="profile2.png" alt="Profile">
+            <div class="profile"><img src="profile2.png" alt="Profile">
                 <div class="activity-info">Mark Angelo Ilagan </div>
+            </div>
                 <div class="activity-email">MarkAngelo@gmail.com</div>
                 <div class="activity-date">2024 - 4 - 13</div>
             </div>
             <div class="activity">
-                <img src="profile3.png" alt="Profile">
+            <div class="profile"><img src="profile3.png" alt="Profile">
                 <div class="activity-info">Kian Derich Manalo </div>
+            </div>
                 <div class="activity-email">KianManalo@gmail.com</div>
                 <div class="activity-date">2024 - 4 - 13</div>
             </div>
-            <button class="activity-btn">User Activities</button>
+            <div class="activity">
+                <div class="activity-info"></div>
+                <div class="activity-email"></div>
+                <div class="activity-date"><button class="activity-btn">User Activities</button></div>
+            </div>
         </div>
 
         <div class="box">
@@ -45,8 +34,9 @@
                 <input type="text" placeholder="Search...">
             </div>
             <div class="account">
-                <img src="profile1.png" alt="Profile">
+            <div class="profile"><img src="profile1.png" alt="Profile">
                 <div class="account-info">Rey Harold Matanguihan </div>
+            </div>
                 <div class="account-email">Reyharold@gmail.com</div>
                 <div class="account-actions">
                     <button class="btn btn-privilege">Privilege</button>
@@ -55,8 +45,9 @@
                 </div>
             </div>
             <div class="account">
-                <img src="profile2.png" alt="Profile">
+            <div class="profile"><img src="profile2.png" alt="Profile">
                 <div class="account-info">Kian Derich Manalo </div>
+            </div>
                 <div class="account-email">KianManalo@gmail.com</div>
                 <div class="account-actions">
                     <button class="btn btn-privilege">Privilege</button>
@@ -65,8 +56,9 @@
                 </div>
             </div>
             <div class="account">
-                <img src="profile3.png" alt="Profile">
+                <div class="profile"><img src="profile3.png" alt="Profile">
                 <div class="account-info">Kian Derich Manalo </div>
+                </div>
                 <div class="account-email">KianManalo@gmail.com</div>
                 <div class="account-actions">
                     <button class="btn btn-privilege">Privilege</button>
@@ -76,16 +68,11 @@
             </div>
         </div>
     </div>
-    </main>
     <style>
         /* Content area styling */
-        .content {
-            flex: 1;
-            padding: 20px;
-        }
 
         .box {
-            width: 1400px;
+            width: 100%;
             background-color: #f5f1dc;
             padding: 20px;
             margin-bottom: 20px;
@@ -105,7 +92,9 @@
             padding: 10px 0;
             border-bottom: 1px solid #ccc;
         }
-
+        .profile{
+            display:flex;
+        }
         .activity:last-child, .account:last-child {
             border-bottom: none;
         }
@@ -121,6 +110,7 @@
             flex: 1;
             padding-left: 10px;
             font-size: 0.9em;
+            margin:auto;
         }
 
         .activity-date {
@@ -172,5 +162,3 @@
         .btn-resume { background-color: #27ae60; }
         .btn-delete { background-color: #c0392b; }
     </style>
-</body>
-</html>

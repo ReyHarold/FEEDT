@@ -7,15 +7,6 @@
     <title>FeedTrack</title>
 </head>
 <body>
-    <header>
-        <h1>FeedTrack</h1>
-    </header>
-    <?php
-    include "side-nav.php";
-    ?>
-    <main>
-        <!-- Main Content -->
-        <div class="main-content">
             <!-- Dashboard Content -->
             <div class="dashboard">
                 <!-- Inventory Chart -->
@@ -36,25 +27,8 @@
                 </div>
             </div>
         </div>
-  </div>
-    </main>
 
     <style>
-
-    body 
-    {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
-   .main-content {
-    background-color: #DCE9E2;
-    flex: 1;
-    padding: 300px;
-    }
 
     /* Dashboard grid layout */
     .dashboard {

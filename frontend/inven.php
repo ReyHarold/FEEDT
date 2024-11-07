@@ -3,18 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/main.css">
     <title>FeedTrack</title>
 </head>
 <body>
-    <header>
-        <h1>FeedTrack</h1>
-    </header>
-    <?php
-    include "side-nav.php";
-    ?>
-    <main>
-    <div class="main-content">
         <div class="inventory-panel">
             <div class="inventory-header">
                 <h3>Feed Mill Inventory</h3>
@@ -103,17 +94,8 @@
                 </tbody>
             </table>
         </div>
-    </div>
-    </main>
     
     <style>
-        .main-content {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
         .inventory-panel {
             width: 1400px;
             background-color: #f4f1df;

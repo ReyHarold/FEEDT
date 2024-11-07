@@ -1,26 +1,9 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="css/main.css">
-        <title>FeedTrack</title>
-    </head>
-    <body>
-        <header>
-            <h1>FeedTrack</h1>
-        </header>
-        <?php
-        include "side-nav.php";
-        ?>
-        <main>
-        <div class="main-content">
-        <!-- Overview Card -->
+     <!-- Overview Card -->
         <div class="overview-card">
             <div class="overview-profile">
                 <div>
                     <h2>Welcome, Mark Angelo Ilagan!</h2>
-                    <p>Here's a quick overview of what’s happening</p>
+                    <p>Here's a quick overview of what's happening</p>
                 </div>
                 <div class="profile-circle"></div>
             </div>
@@ -42,7 +25,7 @@
                     <div class="user-circle"></div>
                     <span>Mark Angelo Ilagan</span>
                 </div>
-                <span>Added 100 units of Corn to Inventory</span>
+               <span>Added 100 units of Corn to Inventory</span>
                 <span>2024 - 4 - 13</span>
             </div>
             <div class="activity-item">
@@ -61,15 +44,20 @@
                 <span>Added 100 units of Wheat to Inventory</span>
                 <span>2024 - 4 - 13</span>
             </div>
-            <button class="other-activities-button">Other Activities</button>
+            <div class="activity-item">
+                <div class="activity-button">
+                    <div></div>
+                    <span></span>
+                </div>
+                <span></span>
+                <span><button class="other-activities-button">Other Activities</button></span>
             </div>
             </div>
-        </main>
         <style>
 
         /* Overview card styling */
         .overview-card, .activity-card {
-            width: 1400px;
+            width: 100%;
             background-color: #E9E3CA;
             padding: 40px;
             border-radius: 5px;
@@ -78,7 +66,8 @@
         }
 
         .overview-card h2, .activity-card h2 {
-            margin: 0;
+            margin:0;
+            padding-bottom:10px;
             font-size: 18px;
             color: #333;
         }
@@ -113,7 +102,12 @@
         .activity-user {
             display: flex;
             align-items: center;
+            width:200px;
         }
+        .activity-item span {
+            display: flex;
+            align-items: center; /* Vertically center each span within the flex container */
+}
 
         .user-circle {
             width: 30px;
@@ -121,6 +115,7 @@
             border-radius: 50%;
             background-color: #3B82A0;
             margin-right: 10px;
+            flex-shrink:0;
         }
 
         .activity-details {
@@ -129,8 +124,6 @@
         }
 
         .other-activities-button {
-            margin-left: 1290px;
-            margin-top: 10px;
             padding: 8px;
             background-color: #dcedc8;
             color: black;
@@ -141,5 +134,3 @@
 
         }
     </style>
-    </body>
-    </html>

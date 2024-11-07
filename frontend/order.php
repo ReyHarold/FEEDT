@@ -7,14 +7,6 @@
     <title>FeedTrack</title>
 </head>
 <body>
-    <header>
-        <h1>FeedTrack</h1>
-    </header>
-    <?php
-    include "side-nav.php";
-    ?>
-    <div class="main-content">
-        <main>
         <div class="Order-panel">
             <div class="Order-header">
                 <h3>Feed Mill Order</h3>
@@ -125,16 +117,8 @@
                     </td>
                 </tr>
             </tbody>
-        </main>
     </div>
     <style>
-    .main-content {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
         /* Order Panel */
         .Order-panel {

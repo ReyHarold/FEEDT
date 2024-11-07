@@ -7,15 +7,6 @@
     <title>FeedTrack</title>
 </head>
 <body>
-    <header>
-        <h1>FeedTrack</h1>
-    </header>
-    <?php
-    include "side-nav.php";
-    ?>
-    <main>
-    <!-- Main Content -->
-    <div class="main-content">
         <div class="user-panel">
             <div class="user-panel-header">
                 <img src="user-avatar.png" alt="User Avatar">
@@ -53,17 +44,8 @@
             </div>
         </div>
     </div>
-    </div>
-    </main>
     <style>
         /* Main Content */
-        .main-content {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
         .user-panel {
             width: 500px;
             background-color: #e0d7b0;
