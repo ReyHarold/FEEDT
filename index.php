@@ -14,7 +14,8 @@
             min-height: 100vh;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(to bottom, #4E944F, #D0E6C9);
+            background: linear-gradient(to bottom, #628338, #FFFFFF);
+            overflow:hidden;
         }
 
         /* Header styling */
@@ -27,11 +28,11 @@
             padding: 10px 20px;
             background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            color: #4E944F;
+            color: #628338;
         }
 
         .header img {
-            height: 40px;
+            height: 24px;
             margin-right: 10px;
         }
 
@@ -42,7 +43,8 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             text-align: center;
-            width: 400px;
+            width: 50%;
+            max-width:400px;
         }
 
         h1 {
@@ -51,7 +53,7 @@
             color: #333;
         }
 
-        form {
+        .form {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -76,7 +78,7 @@
         }
 
         button {
-            background-color: #4E944F;
+            background-color: #628338;
             border: none;
             color: white;
             padding: 12px;
@@ -85,6 +87,13 @@
             border-radius: 5px;
             cursor: pointer;
             margin-top: 10px;
+            transition:0.3s;
+        }
+        a{
+            width: 100%;
+        }
+        button:hover {
+            background-color: #a5cba1;
         }
 
         /* Footer styling */
@@ -109,16 +118,16 @@
     </div>
 
     <div class="container">
+        <div class=form>
         <h1>Welcome to FeedTrack</h1>
-        <form>
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
-            <button type="submit">Sign In</button>
-        </form>
+            <a href="frontend/main.php"><button>Sign In</button></a>
+            </div>
     </div>
 
     <div class="footer">
