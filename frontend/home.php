@@ -58,7 +58,7 @@
         /* Overview card styling */
         .overview-card, .activity-card {
             width: 100%;
-            background-color: #E9E3CA;
+            background-color: #628338;
             padding: 40px;
             border-radius: 5px;
             margin: 15px 0;
@@ -69,12 +69,15 @@
             margin:0;
             padding-bottom:10px;
             font-size: 18px;
-            color: #333;
+            color: #FFFFFF;
+        }
+        span{
+            color:#FFFFFF;
         }
 
         .overview-card p {
             margin-top: 3px;
-            color: #333;
+            color: #FFFFFF;
         }
 
         .overview-profile {

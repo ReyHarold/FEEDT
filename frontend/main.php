@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/table.css">
     <title>FeedTrack</title>
     <body>
-        <header>
+        <header class= "nav-header">
             <h1>FeedTrack</h1>
         </header>
         <aside>

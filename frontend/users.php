@@ -73,16 +73,17 @@
 
         .box {
             width: 100%;
-            background-color: #f5f1dc;
+            background-color: #628338;
             padding: 20px;
             margin-bottom: 20px;
             border: 2px solid #000;
             border-radius: 5px;
+            color:#ffff
         }
 
         .box h2 {
             margin-bottom: 15px;
-            color: #333;
+            color: #ffff;
         }
 
         .activity, .account {
@@ -112,17 +113,19 @@
             font-size: 0.9em;
             margin:auto;
             width:200px;
+            color:#ffff;
         }
 
         .activity-date {
             font-size: 0.8em;
-            color: #666;
+            color: #ffff;
         }
         
         .account-email {
             font-size: 0.8em;
             display: flex;
             align-items: center;
+            color:#ffff
         }
 
         .search-bar {

@@ -1,24 +1,21 @@
- /* Order Panel */
  .panel {
     width: 100%;
-    background-color: #f4f1df;
+    background-color: #628338;
     padding: 20px;
     border-radius: 8px;
-    border: 2px solid #706c61;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e0d7b0;
+    background-color: #628338;
     padding: 10px;
-    border: 2px solid #706c61;
 }
 
 .header h3 {
     font-size: 1.2em;
-    color: #333;
+    color: #ffff;
 }
 
 .actions {
@@ -42,10 +39,10 @@
 .table th {
     background-color: #e0d7b0;
     font-size: 1em;
-    color: #333;
+    color: #ffff;
 }
 
 .table td {
     font-size: 1em;
-    color: #333;
+    color: #ffff;
 }
