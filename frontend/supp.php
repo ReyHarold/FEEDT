@@ -11,14 +11,9 @@
         <h1>FeedTrack</h1>
     </header>
     <aside>
-        <ul>
-            <li><a href="#"><img src="icons/home.png" alt="Home">Home</a></li>
-            <li><a href="#"><img src="icons/users.png" alt="Users">Users</a></li>
-            <li><a href="#"><img src="icons/inve.png" alt="Inventory">Inventory</a></li>
-            <li><a href="#"><img src="icons/orders.png" alt="Orders">Orders</a></li>
-            <li><a href="#" class="active"><img src="icons/suppliers.png" alt="Suppliers">Suppliers</a></li>
-            <li><a href="#"><img src="icons/report.png" alt="Reports">Reports & Analytics</a></li>
-        </ul>
+    <?php
+    include "side-nav.php";
+    ?>
     </aside>
     <main>
     <div class="main-content">
