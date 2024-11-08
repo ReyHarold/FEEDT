@@ -12,12 +12,14 @@ aside {
     top: 72px;
     left: 0;
     overflow-y: auto;
+    box-shadow: 0px 1px 5px 1px black;
 }
 
-aside ul {
+ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
+    width: 100%;
 }
 
 
@@ -33,23 +35,42 @@ aside a {
 }
 
 aside a:hover {
-    background-color: #ddd;
+    background-color: #5c5a5a;
+    scale: 1.1;
+    color: white;
 }
 
 aside a.active {
     background-color: #86DD70;
+    scale: 1;
+    color: black;
+    box-shadow: 1px 0px 5px 1px black;
     /* Removed border */
 }
 
 aside a.active:hover {
     background-color: #45a049;
 }
-
-aside img {
-    width: 24px;
-    height: 24px;
+li {
+    width: 100%;
+    height:auto;
+}
+aside .img-container {
+    height: 30px; /* Match the container's height */
+    width: auto;  /* Keep the aspect ratio */
+}
+aside .img-container img {
+    height: 100%; /* Match the container's height */
+    width: auto;  /* Keep the aspect ratio */
     margin-right: 10px;
-    padding: 2px;
+    object-fit: cover;
+}
+.img-container .circle{
+    margin-right: 10px;
+    object-fit: cover;
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
 }
 .nav-header {
     background-color: #628338;
@@ -62,12 +83,30 @@ aside img {
     top: 0;
     left: 0;
     z-index: 1000;
+    box-shadow: 1px 0px 5px 1px black;
 }
 
 h1 {
     margin: 0;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+h2 {
+    margin:0;
+    padding-bottom:10px;
+    font-size: 24px;
+    color: #FFFFFF;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
+span{
+    color:#FFFFFF;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }
 
+p {
+    margin-top: 3px;
+    color: #FFFFFF;
+    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
+}
 .main-content {
     width: 70%;
     margin-left: 202px;
@@ -84,11 +123,91 @@ h1 {
         width: 100%;
         height: auto;
         position: static;
-        border-right: none;
-        border-bottom: 2px solid #000;
+        border: none;
     }
 
     .main-content {
         margin-left: 0;
     }
 }
+
+/* Recent activities styling */
+.activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.activity-user {
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    gap: 10px;
+    width:200px;
+}
+.activity-item span {
+    display: flex;
+    align-items: center; /* Vertically center each span within the flex container */
+}          
+.user-circle .img-container , .box .img-container, .activity-card .img-container{
+    height:50px;
+    width: 50px;
+}
+.profile-circle .img-container{
+    height:150px;
+    width: 200px;
+}
+
+.activity-details {
+    display: flex;
+    justify-content: space;
+}
+.overview-card, .activity-card, .box {
+    width: 100%;
+    background-color: #628338;
+    padding: 40px;
+    border-radius: 5px;
+    margin: 15px 0;
+    box-shadow: 5px 10px 20px 5px black;
+}
+/*Textbox*/
+.textbox {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    position: static;
+    max-width: 240px;
+  }
+  
+  .textbox label.text {
+    font-size: 0.75rem;
+    color: #FFFFFF;
+    font-weight: 700;
+    position: relative;
+    top: 0.5rem;
+    margin: 0 0 0 7px;
+    padding: 0 3px;
+    background: #e8e8e8;
+    width: fit-content;
+    background-color: #628338;
+  }
+  
+  .textbox input[type=text].input {
+    padding: 11px 10px;
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    border: 2px #FFFFFF solid;
+    border-radius: 5px;
+    background-color: #628338;
+  }
+  
+  .textbox input[type=text].input:focus {
+    outline: none;
+  }
+
+  .head-text{
+    display: flex;
+    flex-direction: column;
+  }

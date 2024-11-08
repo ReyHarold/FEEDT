@@ -1,8 +1,13 @@
        <div class="panel">
             <div class="header">
+                <div class="head-text">
                 <h3>Feed Mill Inventory</h3>
+                <div class="textbox">
+                    <label for='input' class="text">Accounts</label>
+                    <input type="text" class="input" placeholder="Search...">
+                </div>
+                </div>
                 <div class="actions">
-                    <input type="text" placeholder="Search...">
                     <button class="add-item-btn">Add Item</button>
                 </div>
             </div>

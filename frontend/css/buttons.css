@@ -1,16 +1,22 @@
 .other-activities-button, .activity-btn {
-    padding: 8px;
+    padding: 10px;
     background-color: #86DD70;
     color: black;
-    border: 1px solid black;
     border-radius: 5px;
     text-align: center;
     cursor: pointer;
+    border: none;
+    box-shadow: 0px 0px 10px 1px black;
+    transition: 0.5s;
+}
 
+.other-activities-button:hover, .activity-btn:hover {
+    background-color: #9fe08f;
+    scale: 1.1;
 }
 
 .add-item-btn {
-    padding: 5px 15px;
+    padding: 11px 15px;
     background-color: #a2e26a;
     color: #333;
     border: 1px solid #706c61;

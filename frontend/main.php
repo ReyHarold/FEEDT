@@ -26,10 +26,10 @@ $privilage = explode(",",$_SESSION['privilage']);
         </header>
         <aside>
     <ul>
-    <li><a href="#" id="home-link" class="active" onclick="loadContent('home', this)"><img src="icons/home.png" alt="Home">Home</a></li>
+    <li><a href="#" id="home-link" class="active" onclick="loadContent('home', this)"><div class="img-container"><img src="icons/home.png" alt="Home"></div>Home</a></li>
         <?php
         for($i=0;$i<count($privilage);$i++ ){
-            echo '<li><a href="#" id="',$privilage[$i],'-link" onclick="loadContent(\'',$privilage[$i],'\', this)"><img src="icons/',$privilage[$i],'.png" alt="',$privilage[$i],'">',ucfirst($privilage[$i]),'</a></li>';
+            echo '<li><a href="#" id="',$privilage[$i],'-link" onclick="loadContent(\'',$privilage[$i],'\', this)"><div class="img-container"><img src="icons/',$privilage[$i],'.png" alt="',$privilage[$i],'"></div>',ucfirst($privilage[$i]),'</a></li>';
         }
         ?>
     </ul>
