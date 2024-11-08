@@ -1,49 +1,39 @@
-     <!-- Overview Card -->
+     <?php
+        error_reporting(0);
+        include "../backend/resession.php";
+        include "../conn.php";
+        $sql = "SELECT user.name, user_pic, log.description, log.date FROM log LEFT JOIN user ON log.userid = user.userid where user.userid = $id;";
+         $result = mysqli_query($conn, $sql);
+         $asd = mysqli_query($conn, $sql);
+    ?>
         <div class="overview-card">
             <div class="overview-profile">
                 <div>
-                    <h2>Welcome, Mark Angelo Ilagan!</h2>
+                    <h2>Welcome, <?php echo $name; ?>!</h2>
                     <p>Here's a quick overview of what's happening</p>
                 </div>
-                <div class="profile-circle"></div>
+                <div class="profile-circle"><?php $takepic= mysqli_fetch_array($asd); echo "<img width='100%' src='data:image/png;base64,".base64_encode($takepic["user_pic"])."' alt='Profile'>"?></div>
             </div>
         </div>
-
-        <!-- Recent Activities -->
         <div class="activity-card">
-            <h2>Recent Activities</h2>
-            <div class="activity-item">
-                <div class="activity-user">
-                    <div class="user-circle"></div>
-                    <span>Rey Harold Matanguihan</span>
+        <h2>Your Recent Activities</h2>
+        <!-- Recent Activities -->
+         <?php
+         if(mysqli_num_rows($result)==0){
+            echo "You have no activities";
+         }else{
+            while($row= mysqli_fetch_assoc($result)){
+            echo"<div class='activity-item'>
+                <div class='activity-user'>
+                    <div class='user-circle'><img width='100%' src='data:image/png;base64,".base64_encode($row["user_pic"])."' alt='Profile'></div>
+                    <span>".$row['name']."</span>
                 </div>
-                <span>Added 100 units of Corn to Inventory</span>
-                <span>2024 - 4 - 13</span>
-            </div>
-            <div class="activity-item">
-                <div class="activity-user">
-                    <div class="user-circle"></div>
-                    <span>Mark Angelo Ilagan</span>
-                </div>
-               <span>Added 100 units of Corn to Inventory</span>
-                <span>2024 - 4 - 13</span>
-            </div>
-            <div class="activity-item">
-                <div class="activity-user">
-                    <div class="user-circle"></div>
-                    <span>Kian Derich Manalo</span>
-                </div>
-                <span>Added 100 units of Wheat to Inventory</span>
-                <span>2024 - 4 - 13</span>
-            </div>
-            <div class="activity-item">
-                <div class="activity-user">
-                    <div class="user-circle"></div>
-                    <span>Justin Joseph Mendoza</span>
-                </div>
-                <span>Added 100 units of Wheat to Inventory</span>
-                <span>2024 - 4 - 13</span>
-            </div>
+                <span>".$row['description']."</span>
+                <span>".$row['date']."</span>
+            </div>";
+         };
+        }
+         ?>
             <div class="activity-item">
                 <div class="activity-button">
                     <div></div>
@@ -86,7 +76,7 @@
             align-items: center;
         }
 
-        .profile-circle {
+        .profile-circle img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
@@ -112,7 +102,7 @@
             align-items: center; /* Vertically center each span within the flex container */
 }
 
-        .user-circle {
+        .user-circle img {
             width: 30px;
             height: 30px;
             border-radius: 50%;

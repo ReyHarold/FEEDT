@@ -53,7 +53,7 @@
             color: #333;
         }
 
-        .form {
+        form {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -88,8 +88,6 @@
             cursor: pointer;
             margin-top: 10px;
             transition:0.3s;
-        }
-        a{
             width: 100%;
         }
         button:hover {
@@ -118,17 +116,20 @@
     </div>
 
     <div class="container">
-        <div class=form>
+        <form action="login.php" method="post">
         <h1>Welcome to FeedTrack</h1>
+        <?php if (isset($_GET['error'])) { ?>
+     		<p class="error"><?php echo $_GET['error']; ?></p>
+     	<?php } ?>
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="name" required>
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
 
-            <a href="frontend/main.php"><button>Sign In</button></a>
+            <button type="submit">Sign In</button>
             </div>
-    </div>
+    </form>
 
     <div class="footer">
         <p>Privacy Policy</p>

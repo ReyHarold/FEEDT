@@ -1,3 +1,15 @@
+<?php
+session_start();
+
+if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
+$id = $_SESSION['id'];
+$name = $_SESSION['name'];
+$privilage = explode(",",$_SESSION['privilage']);
+}else{
+    header("Location: ../index.php");
+    exit();
+} 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +26,12 @@
         </header>
         <aside>
     <ul>
-        <li><a href="#" id="home-link" class="active" onclick="loadContent('home', this)"><img src="icons/home.png" alt="Home">Home</a></li>
-        <li><a href="#" id="users-link" onclick="loadContent('users', this)" ><img src="icons/users.png" alt="Users">Users</a></li>
-        <li><a href="#" id="inven-link" onclick="loadContent('inven', this)" ><img src="icons/inve.png" alt="Inventory">Inventory</a></li>
-        <li><a href="#" id="order-link" onclick="loadContent('order', this)" ><img src="icons/orders.png" alt="Orders">Orders</a></li>
-        <li><a href="#" id="supp-link" onclick="loadContent('supp', this)" ><img src="icons/suppliers.png" alt="Suppliers">Suppliers</a></li>
-        <li><a href="#" id="report-link" onclick="loadContent('report', this)" ><img src="icons/report.png" alt="Reports">Reports & Analytics</a></li>
+    <li><a href="#" id="home-link" class="active" onclick="loadContent('home', this)"><img src="icons/home.png" alt="Home">Home</a></li>
+        <?php
+        for($i=0;$i<count($privilage);$i++ ){
+            echo '<li><a href="#" id="',$privilage[$i],'-link" onclick="loadContent(\'',$privilage[$i],'\', this)"><img src="icons/',$privilage[$i],'.png" alt="',$privilage[$i],'">',ucfirst($privilage[$i]),'</a></li>';
+        }
+        ?>
     </ul>
 </aside>
             <div id="main-content" class="main-content">

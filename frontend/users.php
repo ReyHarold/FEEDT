@@ -1,30 +1,25 @@
+    <?php
+        error_reporting(0);
+        include "../backend/resession.php";
+        include "../conn.php";
+    ?>
     <div class="box">
             <h2>Recent Activities</h2>
-            <div class="activity">
-                <div class="profile"><img src="profile1.png" alt="Profile">
-                <div class="activity-info">Rey Harold Matanguihan </div>
-                </div>
-                <div class="activity-email">Reyharold@gmail.com</div>
-                <div class="activity-date">2024 - 4 - 13</div>
-            </div>
-            <div class="activity">
-            <div class="profile"><img src="profile2.png" alt="Profile">
-                <div class="activity-info">Mark Angelo Ilagan </div>
-            </div>
-                <div class="activity-email">MarkAngelo@gmail.com</div>
-                <div class="activity-date">2024 - 4 - 13</div>
-            </div>
-            <div class="activity">
-            <div class="profile"><img src="profile3.png" alt="Profile">
-                <div class="activity-info">Kian Derich Manalo </div>
-            </div>
-                <div class="activity-email">KianManalo@gmail.com</div>
-                <div class="activity-date">2024 - 4 - 13</div>
-            </div>
+            <?php
+         $sql = "SELECT user.email,user.name, user_pic, log.description, log.date FROM log LEFT JOIN user ON log.userid = user.userid;";
+         $result = mysqli_query($conn, $sql);
+            while($row= mysqli_fetch_assoc($result)){
+            echo"<div class='activity'>";
+            echo '<div class="profile"><img src="data:image/png;base64,'.base64_encode($row['user_pic']).'" alt="Profile">';
+            echo  "<div class='activity-info'>".$row["name"]."</div></div>";
+            echo  "<div class='activity-email'>".$row["description"]."</div>";
+            echo  "<div class='activity-date'>".$row["date"]."</div></div>";
+            };
+         ?>
             <div class="activity">
                 <div class="activity-info"></div>
                 <div class="activity-email"></div>
-                <div class="activity-date"><button class="activity-btn">User Activities</button></div>
+                <div class="activity-date"><button class="activity-btn">Show All Activities</button></div>
             </div>
         </div>
 
@@ -33,39 +28,21 @@
             <div class="search-bar">
                 <input type="text" placeholder="Search...">
             </div>
-            <div class="account">
-            <div class="profile"><img src="profile1.png" alt="Profile">
-                <div class="account-info">Rey Harold Matanguihan </div>
-            </div>
-                <div class="account-email">Reyharold@gmail.com</div>
-                <div class="account-actions">
+        <?php
+        $sql2 = "SELECT * from user";
+        $result2 = mysqli_query($conn, $sql2);
+            while($row2= mysqli_fetch_assoc($result2)){
+            echo"<div class='account'>";
+            echo '<div class="profile"><img src="data:image/png;base64,'.base64_encode($row2['user_pic']).'" alt="Profile">';
+            echo  "<div class='activity-info'>".$row2["name"]."</div></div>";
+            echo '<div class="account-email">'.$row2["email"].'</div>';
+            echo  '<div class="account-actions">
                     <button class="btn btn-privilege">Privilege</button>
                     <button class="btn btn-resume">Resume</button>
                     <button class="btn btn-delete">Delete</button>
-                </div>
-            </div>
-            <div class="account">
-            <div class="profile"><img src="profile2.png" alt="Profile">
-                <div class="account-info">Kian Derich Manalo </div>
-            </div>
-                <div class="account-email">KianManalo@gmail.com</div>
-                <div class="account-actions">
-                    <button class="btn btn-privilege">Privilege</button>
-                    <button class="btn btn-suspend">Suspend</button>
-                    <button class="btn btn-delete">Delete</button>
-                </div>
-            </div>
-            <div class="account">
-                <div class="profile"><img src="profile3.png" alt="Profile">
-                <div class="account-info">Kian Derich Manalo </div>
-                </div>
-                <div class="account-email">KianManalo@gmail.com</div>
-                <div class="account-actions">
-                    <button class="btn btn-privilege">Privilege</button>
-                    <button class="btn btn-suspend">Suspend</button>
-                    <button class="btn btn-delete">Delete</button>
-                </div>
-            </div>
+                </div></div>';
+            };
+        ?>
         </div>
     </div>
     <style>
