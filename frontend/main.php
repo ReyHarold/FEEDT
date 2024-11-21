@@ -19,11 +19,15 @@ $privilage = explode(",",$_SESSION['privilage']);
     <link rel="stylesheet" href="css/reports.css">
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/table.css">
+    <script src="../backend/showandhide_script.js"></script>
     <title>FeedTrack</title>
     <body>
-        <header class= "nav-header">
+        <div class= "nav-header">
             <h1>FeedTrack</h1>
-        </header>
+            <a href="../logout.php">
+            <img src="icons/off.png" alt="logout">
+            </a>
+        </div>
         <aside>
     <ul>
     <li><a href="#" id="home-link" class="active" onclick="loadContent('home', this)"><div class="img-container"><img src="icons/home.png" alt="Home"></div>Home</a></li>
@@ -43,15 +47,15 @@ $privilage = explode(",",$_SESSION['privilage']);
     const contentArea = document.getElementById("main-content");
     const xhr = new XMLHttpRequest();
 
-     // Check if element is defined
-     if (element) {
-        // Remove 'active' class from all links
-        const links = document.querySelectorAll("a.active");
-        links.forEach(link => link.classList.remove("active"));
+        // Check if element is defined
+        if (element) {
+            // Remove 'active' class from all links
+            const links = document.querySelectorAll("a.active");
+            links.forEach(link => link.classList.remove("active"));
 
-        // Add 'active' class to the clicked link
-        element.classList.add("active");
-    }
+            // Add 'active' class to the clicked link
+            element.classList.add("active");
+        }
 
     xhr.open("GET", page+".php", true); // Request the PHP page
     xhr.onload = function () {

@@ -2,13 +2,15 @@
             <div class="header">
                 <div class="head-text">
                 <h3>Feed Mill Inventory</h3>
+                <div class="textandbutton">
                 <div class="textbox">
                     <label for='input' class="text">Accounts</label>
                     <input type="text" class="input" placeholder="Search...">
                 </div>
-                </div>
                 <div class="actions">
                     <button class="add-item-btn">Add Item</button>
+    </div>
+                </div>
                 </div>
             </div>
             <table class="table">

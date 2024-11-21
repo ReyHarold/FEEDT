@@ -30,6 +30,8 @@ if (isset($_POST['name']) && isset($_POST['password'])) {
             	$_SESSION['name'] = $row['name'];
                 $_SESSION['privilage'] = $row['privilage'];
             	$_SESSION['id'] = $row['userid'];
+				$sql2 = "INSERT INTO `log`( `userid`, `type`,`description`) VALUES ('".$row['userid']."','in','Logged in')";
+				$result = mysqli_query($conn, $sql2);
             	header("Location: frontend/main.php");
 		        exit();
             }else{
