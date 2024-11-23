@@ -3,6 +3,60 @@
         include "../backend/resession.php";
         include "../conn.php";
     ?>
+    <div class="popup-container Popuser" id="popupForm">
+        <div class="popup-content">
+            <span class="close-btn" onclick= "hideForm('user')">&times;</span>
+            <h2>Edit user</h2>
+            <form action="" id="userForm" method="post">
+            <input type="hidden" id="id" name="id" value= "" required>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" id="name" name="name" required>
+                    <div class="underline"></div>
+                    <label for="name">Name:</label>
+                </div>
+                <div class="input-data">
+                    <input type="email" id="email" name="email" required>
+                    <div class="underline"></div>
+                    <label for="email">Email:</label>
+            </div></div>
+
+            <div class="form-row">
+                    <div class="checkbox-wrapper-2">
+                    <input class= "sc-gJwTLC ikxBAC" type="checkbox" value="users" id="users" name="privilage[]">
+                    <label for="users">Users</label>
+                </div>
+
+                <div class="checkbox-wrapper-2">
+                    <input class= "sc-gJwTLC ikxBAC" type="checkbox" value="inventory" id="inventory" name="privilage[]">
+                    <label for="inventory">Inventory</label>
+                </div>
+
+                <div class="checkbox-wrapper-2">
+                    <input class= "sc-gJwTLC ikxBAC" type="checkbox" value="orders" id="orders" name="privilage[]">
+                    <label for="orders">Orders</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="checkbox-wrapper-2">
+                    <input class= "sc-gJwTLC ikxBAC" type="checkbox" value="production" id="production" name="privilage[]">
+                    <label for="production">Production</label>
+                </div>
+
+                <div class="checkbox-wrapper-2">
+                    <input class= "sc-gJwTLC ikxBAC" type="checkbox" value="suppliers" id="suppliers" name="privilage[]">
+                    <label for="suppliers">Suppliers</label>
+                </div>
+
+                <div class="checkbox-wrapper-2">
+                    <input class= "sc-gJwTLC ikxBAC" type="checkbox" value="reports" id="reports" name="privilage[]">
+                    <label for="report">Report</label>
+                </div>
+            </div>
+                <button onclick="callScript('userForm','scripts/updateUser.php')" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
     <div class="box">
             <h2>Recent Activities</h2>
             <?php
@@ -41,20 +95,30 @@
         $sql2 = "SELECT * from user";
         $count = 0;
         $result2 = mysqli_query($conn, $sql2);
+
             while($row2= mysqli_fetch_assoc($result2)){
                 if($count<5){
                     echo"<div class='account'>";
                     }else{
                     echo"<div class='account rowb hide'>";
                     }
+                    $id = htmlspecialchars($row2["userid"], ENT_QUOTES, 'UTF-8');
+                    $name = htmlspecialchars($row2["name"], ENT_QUOTES, 'UTF-8'); // Sanitize strings
+                    $email = htmlspecialchars($row2["email"], ENT_QUOTES, 'UTF-8');
+                    $privilageArray = explode(',', $row2["privilage"]); // Convert string to array
+                    $privilage = json_encode($privilageArray); // Convert to JSON
             echo '<div class="profile"><div class="img-container"><img class="circle" src="data:image/png;base64,'.base64_encode($row2['user_pic']).'" alt="Profile"></div>';
             echo  "<div class='activity-info'>".$row2["name"]."</div></div>";
             echo '<div class="account-email">'.$row2["email"].'</div>';
-            echo  '<div class="account-actions">
-                    <button class="btn btn-privilege">Privilege</button>
-                    <button class="btn btn-resume">Resume</button>
-                    <button class="btn btn-delete">Delete</button>
-                </div></div>';
+            echo  "<div class='account-actions'>
+                    <button class='btn btn-privilege' id='' onclick ='usersForm(\"user\",\"" . $id . "\", \"" . $name . "\", \"" . $email . "\", " . $privilage . ")'>Edit</button>";
+                    if($row2["active"] == "true"){
+            echo "<button class='btn btn-suspend ".$id."' onclick='areYouSure(\"Suspend ID:".$id." Name: ". $name ." ?\", \"". $id ."\", \"suspend\")'>Suspend</button>";
+                    }else{
+            echo "<button class='btn btn-resume ".$id."' onclick='areYouSure(\"Resume ID:".$id." Name: ". $name ." ?\", \"". $id ."\", \"resume\")'>Resume</button>";
+                    };
+            echo "<button class='btn btn-delete'>Delete</button>
+                </div></div>";
                 $count++;
             };
         ?>

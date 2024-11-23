@@ -23,10 +23,13 @@ if (isset($_POST['name']) && isset($_POST['password'])) {
 		$sql = "SELECT * FROM user WHERE name='$uname' AND password='$pass'";
 
 		$result = mysqli_query($conn, $sql);
-
 		if (mysqli_num_rows($result) === 1) {
 			$row = mysqli_fetch_assoc($result);
-            if ($row['name'] === $uname && $row['password'] === $pass) {
+			if($row['active'] === "false"){
+				header("Location: index.php?error=Account is suspended!");
+				exit();
+		}
+            elseif ($row['name'] === $uname && $row['password'] === $pass) {
             	$_SESSION['name'] = $row['name'];
                 $_SESSION['privilage'] = $row['privilage'];
             	$_SESSION['id'] = $row['userid'];
@@ -34,12 +37,13 @@ if (isset($_POST['name']) && isset($_POST['password'])) {
 				$result = mysqli_query($conn, $sql2);
             	header("Location: frontend/main.php");
 		        exit();
-            }else{
-				header("Location: index.php?error=Incorect User name or password");
+            }
+				else{
+				header("Location: index.php?error=Incorrect User name or password");
 		        exit();
 			}
 		}else{
-			header("Location: index.php?error=Incorect User name or password");
+			header("Location: index.php?error=Incorrect User name or password");
 	        exit();
 		}
 	}

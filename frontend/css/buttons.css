@@ -26,6 +26,7 @@
 }
 
 .account-actions .btn {
+    width: 80px;
     padding: 5px 10px;
     border: 1px solid #000;
     font-size: 0.8em;

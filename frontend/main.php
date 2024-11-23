@@ -19,6 +19,7 @@ $privilage = explode(",",$_SESSION['privilage']);
     <link rel="stylesheet" href="css/reports.css">
     <link rel="stylesheet" href="css/buttons.css">
     <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/formstyle.css">
     <script src="../backend/showandhide_script.js"></script>
     <title>FeedTrack</title>
     <body>
@@ -38,6 +39,12 @@ $privilage = explode(",",$_SESSION['privilage']);
         ?>
     </ul>
 </aside>
+<div class="popup-container Popmain box" id="popupForm">
+        <div class="popup-content">
+            <span class="close-btn" onclick= "hideForm('main')">&times;</span>
+            <h2 id="message"></h2>
+        </div>
+    </div>
             <div id="main-content" class="main-content">
                 <?php include "home.php";?>
             </div>
@@ -71,4 +78,6 @@ $privilage = explode(",",$_SESSION['privilage']);
     xhr.send();
 };
         </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="formScript.js"></script>
     </html>
