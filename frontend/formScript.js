@@ -60,11 +60,11 @@ function usersForm(page, id, name, email, privilage){
     showForm(page);
 }
 
-function areYouSure(message, id, action) {
+function areYouSure(message, id, action, name) {
     return new Promise((resolve, reject) => {
       const confirmation = window.confirm(message);
       if (confirmation) {
-        $.post('scripts/suspend_script.php', { action: action, id: id }, function(result) { 
+        $.post('scripts/suspend_script.php', { action: action, id: id, name: name}, function(result) { 
             if (result){
                 alert(result);
                 loadContent('users', document.getElementById("users-link"));
@@ -96,4 +96,22 @@ function areYouSure(message, id, action) {
     .catch(error => console.error('Error:', error));
 });
 loadContent('users', document.getElementById("users-link"));
+}
+
+function checkboxCheck(num){
+    if(num==!undefined){
+    document.getElementById("checkbox"+num+"").checked = true;
+    setTimeout(() => document.getElementById("search"+num+"").focus(), 500);
+
+    }else{
+    document.getElementById("checkbox").checked = true;
+    setTimeout(() => document.getElementById("search").focus(), 500);
+    }
+}
+function remove(num){
+    if(num== !undefined){
+    document.getElementById("checkbox"+num+"").checked = false;
+    }else{
+    document.getElementById("checkbox").checked = false;
+    }
 }

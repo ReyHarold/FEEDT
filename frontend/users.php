@@ -58,11 +58,27 @@
         </div>
     </div>
     <div class="box">
-            <h2>Recent Activities</h2>
+            <h2>All Activities</h2>
             <?php
-         $sql = "SELECT user.email,user.name, user_pic, log.description, log.date FROM log LEFT JOIN user ON log.userid = user.userid;";
+         $sql = "SELECT user.email,user.name, user_pic, log.description, log.date FROM log LEFT JOIN user ON log.userid = user.userid ORDER BY log.date DESC;";
          $result = mysqli_query($conn, $sql);
          $count = 0;
+         ?>
+         <div class="activity">
+         <div class="checkbox-container" >
+        <input class="c-checkbox" type="checkbox" id="checkbox1">
+        <div class="c-formContainer">
+            <form class="c-form" onfocusout="remove('1')" action="">
+                <input class="c-form__input" id="search1" placeholder="E-mail" type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+                <label class="c-form__buttonLabel" for="checkbox1">
+                    <button class="c-form__button" type="button">Send</button>
+                </label>
+                <label class="c-form__toggle" onclick="checkboxCheck('1')" data-title="Notify me"></label>
+            </form>
+        </div>
+    </div>
+</div><br><br>
+         <?php
          if(mysqli_num_rows($result)==0){
             echo "You have no activities";
          }else{
@@ -87,10 +103,21 @@
             </div>
         </div>
         <div class="box">
-        <div class="textbox">
-            <label for='input' class="text">Accounts</label>
-            <input type="text" class="input" placeholder="Search...">
+        <h2>All Accounts</h2>
+        <div class="boxbuttoncontainer">
+        <div class="checkbox-container" >
+        <input class="c-checkbox" type="checkbox" id="checkbox">
+        <div class="c-formContainer">
+            <form class="c-form" onfocusout="remove()" action="">
+                <input class="c-form__input" id="search" placeholder="E-mail" type="email" pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" required>
+                <label class="c-form__buttonLabel" for="checkbox">
+                    <button class="c-form__button" type="button">Send</button>
+                </label>
+                <label class="c-form__toggle" onclick="checkboxCheck()" data-title="Notify me"></label>
+            </form>
         </div>
+        </div>
+        </div><br><br>
         <?php
         $sql2 = "SELECT * from user";
         $count = 0;
@@ -111,11 +138,11 @@
             echo  "<div class='activity-info'>".$row2["name"]."</div></div>";
             echo '<div class="account-email">'.$row2["email"].'</div>';
             echo  "<div class='account-actions'>
-                    <button class='btn btn-privilege' id='' onclick ='usersForm(\"user\",\"" . $id . "\", \"" . $name . "\", \"" . $email . "\", " . $privilage . ")'>Edit</button>";
+                    <button class='btn btn-privilege' id='' onclick ='usersForm(\"user\",\"" . $id . "\", \"" . $name . "\", \"" . $email . "\", " . $privilage .")'>Edit</button>";
                     if($row2["active"] == "true"){
-            echo "<button class='btn btn-suspend ".$id."' onclick='areYouSure(\"Suspend ID:".$id." Name: ". $name ." ?\", \"". $id ."\", \"suspend\")'>Suspend</button>";
+            echo "<button class='btn btn-suspend ".$id."' onclick='areYouSure(\"Suspend Name: ". $name ." ?\", \"". $id ."\", \"suspend\" ,\"".$name."\")'>Suspend</button>";
                     }else{
-            echo "<button class='btn btn-resume ".$id."' onclick='areYouSure(\"Resume ID:".$id." Name: ". $name ." ?\", \"". $id ."\", \"resume\")'>Resume</button>";
+            echo "<button class='btn btn-resume ".$id."' onclick='areYouSure(\"Resume Name: ". $name ." ?\", \"". $id ."\", \"resume\", \"".$name."\")'>Resume</button>";
                     };
             echo "<button class='btn btn-delete'>Delete</button>
                 </div></div>";
@@ -168,12 +195,6 @@
             display: flex;
             align-items: center;
             color:#ffff
-        }
-
-        .search-bar {
-            margin: 10px 0;
-            display: flex;
-            align-items: center;
         }
 
         .account-actions {
