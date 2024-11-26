@@ -53,7 +53,7 @@
                     <label for="report">Report</label>
                 </div>
             </div>
-                <button class="button" onclick="callScript('userForm','scripts/updateUser.php')" type="submit">Submit</button>
+                <button class="button" onclick="callScript('userForm','scripts/updateUser.php','users')" type="submit">Submit</button>
             </form>
         </div>
     </div>
@@ -68,40 +68,52 @@
             <button class="btn-search" id="activitySearch"><i class="fas fa-search"></i></button>
             <input type="text" id="searchInput" onfocus="addSearch('activitySearch','activityContent','searchInput','searchActivity')" onblur="removeSearch('activitySearch')" class="input-search" id="searchInput" placeholder="Type to Search...">
         </div>
-         <br><br>
-            <div id="activityContent">
+            <table id="activityContent" class="table">
+            <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="activityContent">
          <?php
          if(mysqli_num_rows($result)==0){
-            echo "You have no activities";
+            echo "<tr><td></td>You have no activities</tr><td></td>";
          }else{
             while($row= mysqli_fetch_assoc($result)){
             if($count<5){
-            echo"<div class='activity'>";
+            echo"<tr class='activity'>";
             }else{
-            echo"<div class='activity rowb hide'>";
+            echo"<tr class='activity rowb hide'>";
             }
-            echo '<div class="profile"><div class="img-container"><img class="circle" src="data:image/png;base64,'.base64_encode($row['user_pic']).'" alt="Profile"></div>';
-            echo  "<div class='activity-info'>".$row["name"]."</div></div>";
-            echo  "<div class='activity-email'>".$row["description"]."</div>";
-            echo  "<div class='activity-date'>".$row["date"]."</div></div>";
+            echo '<td class="profile"><img class="circle" src="data:image/png;base64,'.base64_encode($row['user_pic']).'" alt="Profile">';
+            echo  "<div class='activity-info'>".$row["name"]."</div></td>";
+            echo  "<td class='activity-email'>".$row["description"]."</td>";
+            echo  "<td class='activity-date'>".$row["date"]."</td></tr>";
             $count++;
             }
         };
          ?>
-         </div>
-            <div class="activity">
-                <div class="activity-info"></div>
-                <div class="activity-email"></div>
-                <div class="activity-date"><button onclick="fetchData(true, this,'activity')" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Activities</button><button onclick="fetchData(false, this, 'activity')" class="hideshow hide other-activities-button ">Hide Activities</button></div>
-            </div>
+         </table>
+        </br>
+                <div class="activity"><button onclick="fetchData(true, this,'activity')" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Activities</button><button onclick="fetchData(false, this, 'activity')" class="hideshow hide other-activities-button ">Hide Activities</button></div>
         </div>
         <div class="box">
         <h2>All Accounts</h2>
         <div class="search-box">
             <button class="btn-search" id="accountSearch"><i class="fas fa-search"></i></button>
             <input type="text" id="searchAccounts" onfocus="addSearch('accountSearch','accountContent','searchAccounts','searchAccount')" class="input-search" placeholder="Type to Search...">
-        </div><br><br>
-        <div id="accountContent">
+        </div><br>
+        <table class="table">
+        <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="activityContent">
         <?php
         $sql2 = "SELECT * from user";
         $count = 0;
@@ -109,19 +121,19 @@
 
             while($row2= mysqli_fetch_assoc($result2)){
                 if($count<5){
-                    echo"<div class='account'>";
+                    echo"<tr class='account'>";
                     }else{
-                    echo"<div class='account rowb hide'>";
+                    echo"<tr class='account rowb hide'>";
                     }
                     $id = htmlspecialchars($row2["userid"], ENT_QUOTES, 'UTF-8');
                     $name = htmlspecialchars($row2["name"], ENT_QUOTES, 'UTF-8'); // Sanitize strings
                     $email = htmlspecialchars($row2["email"], ENT_QUOTES, 'UTF-8');
                     $privilageArray = explode(',', $row2["privilage"]); // Convert string to array
                     $privilage = json_encode($privilageArray); // Convert to JSON
-            echo '<div class="profile"><div class="img-container"><img class="circle" src="data:image/png;base64,'.base64_encode($row2['user_pic']).'" alt="Profile"></div>';
-            echo  "<div class='activity-info'>".$row2["name"]."</div></div>";
-            echo '<div class="account-email">'.$row2["email"].'</div>';
-            echo  "<div class='account-actions'>
+            echo '<td class="profile"><div class="img-container"><img class="circle" src="data:image/png;base64,'.base64_encode($row2['user_pic']).'" alt="Profile"></div>';
+            echo  "<div class='activity-info'>".$row2["name"]."</div></td>";
+            echo '<td class="account-email">'.$row2["email"].'</td>';
+            echo  "<td><div class='account-actions'>
                     <button class='btn btn-privilege ".$id."' onclick ='usersForm(\"user\",\"" . $id . "\", \"" . $name . "\", \"" . $email . "\", " . $privilage .")'>Edit</button>";
                     if($row2["active"] == "true"){
             echo "<button class='btn btn-suspend ".$id."' onclick='areYouSure(\"Suspend Name: ". $name ." ?\", \"". $id ."\", \"suspend\" ,\"".$name."\")'>Suspend</button>";
@@ -129,61 +141,11 @@
             echo "<button class='btn btn-resume ".$id."' onclick='areYouSure(\"Resume Name: ". $name ." ?\", \"". $id ."\", \"resume\", \"".$name."\")'>Resume</button>";
                     };
             echo "<button class='btn btn-delete' onclick = 'Delete(\"".$id."\", \"".$name."\")'>Delete</button>
-                </div></div>";
+                </div></div></td>";
                 $count++;
             };
         ?>
+        </table>
+        </br>
+        <div class="account"><button onclick="fetchData(true, this, 'account' )" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Accounts</button><button onclick="fetchData(false, this, 'account')" class="hideshow hide other-activities-button ">Hide Accounts</button></div>
         </div>
-        <div class='account'>
-        <div class="profile"></div>
-        <div class='activity-info'></div>
-        <div class="account-actions">
-        <button onclick="fetchData(true, this, 'account' )" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Accounts</button><button onclick="fetchData(false, this, 'account')" class="hideshow hide other-activities-button ">Hide Accounts</button>
-        </div>
-        </div>
-        </div>
-    </div>
-    <style>
-        /* Content area styling */
-
-        .box h2 {
-            margin-bottom: 15px;
-            color: #ffff;
-        }
-
-        .activity, .account {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0;
-        }
-        .profile{
-            display:flex;
-        }
-
-        .activity-info, .account-info, .activity-email  {
-            flex: 1;
-            padding-left: 10px;
-            font-size: 0.9em;
-            margin:auto;
-            width:200px;
-            color:#ffff;
-        }
-
-        .activity-date {
-            font-size: 0.8em;
-            color: #ffff;
-        }
-        
-        .account-email {
-            font-size: 0.8em;
-            display: flex;
-            align-items: center;
-            color:#ffff
-        }
-
-        .account-actions {
-            display: flex;
-            gap: 5px;
-        }
-    </style>

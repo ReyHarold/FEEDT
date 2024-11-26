@@ -5,7 +5,6 @@
     border-radius: 8px;
     box-shadow: 0px 0px 5px 2px black;
 }
-
 .header {
     display: flex;
     justify-content: space-between;
@@ -30,18 +29,30 @@
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
-    box-shadow: 0px 0px 5px 2px black;
+    box-shadow: 0px 0px 10px 2px black;
 }
 
 .table th,
 .table td {
     padding: 10px;
     text-align: center;
-    border: 1px solid #706c61;
+    border: 1px solid black;
 }
-
+.profile{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
+}
+.profile .circle{
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    object-fit: cover;
+}
 .table th {
-    background-color: #e0d7b0;
+    background-color: #628338;
     font-size: 1em;
     color: #ffff;
 }
@@ -49,5 +60,4 @@
 .table td {
     font-size: 1em;
     color: #ffff;
-    text-shadow: 2px 4px 3px rgba(0,0,0,0.3);
 }

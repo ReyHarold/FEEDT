@@ -49,7 +49,7 @@ function Search(table, inputId, phpscript) {
                                     </div>
                                     <div class="account-email">${item.email}</div>
                                     <div class="account-actions">
-                                        <button class="btn btn-privilege ${item.userid}" onclick="usersForm("user","${item.userid}", "${item.name}","${item.email}",${item.privilage.map(priv => `"${priv}"`).join(', ')})">Edit</button>
+                                        <button class="btn btn-privilege ${item.userid}" onclick="usersForm('user','${item.userid}', '${item.name}','${item.email}',[${item.privilage.map(priv => `'${priv}'`).join(", ")}])">Edit</button>
                                         `+button+`
                                         <button class='btn btn-delete' onclick = 'Delete(\""${item.id}"\", \""${item.name}"\")'>Delete</button>
                                     </div>

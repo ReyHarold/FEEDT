@@ -13,6 +13,12 @@ function showForm(page) {
     popupFormmain.style.display = 'flex';
     bodymain.style.overflow = 'hidden';
     break;
+        case "inventoryAdd":
+    const popupForminventory = document.querySelector('.Popinventory');
+    const bodyinventory = document.querySelector('body');
+    popupForminventory.style.display = 'flex';
+    bodyinventory.style.overflow = 'hidden';
+    break;
     }
 }
 
@@ -42,20 +48,40 @@ function hideForm(page) {
     const bodymain = document.querySelector('body');
         bodymain.style.overflow = 'auto';
         popupFormmain.style.display = 'none';
+    break;
+    case "inventoryAddform":
+        const popupFormaddInventory = document.querySelector('.Popinventory');
+        const bodyaddInventory = document.querySelector('body');
+            bodyaddInventory.style.overflow = 'auto';
+            popupFormaddInventory.style.display = 'none';
+        
+        document.getElementById("addItem").value= " ";
+        document.getElementById("addQuantity").value= " ";
+        document.getElementById("addPrice").value= " ";
+    break;
+
 }
 }
 
 function usersForm(page, id, name, email, privilage){
-    document.getElementById("id").value= id;
-    document.getElementById("name").value= name;
-    document.getElementById("email").value= email;
+    switch(page){
+        case "user":
+            document.getElementById("id").value= id;
+            document.getElementById("name").value= name;
+            document.getElementById("email").value= email;
 
-    privilage.forEach(function(priv) {
-        const checkbox = document.getElementById(priv);  // Get the checkbox by id
-        if (checkbox) {  // Ensure the element exists
-            checkbox.checked = true;
-        }
-    });
+            privilage.forEach(function(priv) {
+                const checkbox = document.getElementById(priv);  // Get the checkbox by id
+                if (checkbox) {  // Ensure the element exists
+                    checkbox.checked = true;
+                }
+            });
+        break;
+
+        case "inventory":
+
+        break;
+    }
 
     showForm(page);
 }
@@ -75,7 +101,7 @@ function areYouSure(message, id, action, name) {
       }
     });
   }
-  function callScript(formid, page) {
+  function callScript(formid, page, load) {
     const bodyuser = document.querySelector('body');
     bodyuser.style.overflow = 'auto';
 
@@ -100,7 +126,14 @@ function areYouSure(message, id, action, name) {
         .then(data => {
             console.log('Success:', data);
             // Call loadContent only after successful form submission
-            loadContent('users', document.getElementById("users-link"));
+        switch(load){
+            case "users":
+                loadContent('users', document.getElementById("users-link"));
+            break;
+            case "inventory":
+            loadContent('inventory', document.getElementById("inventory-link"));
+            break;
+        }
         })
     });
 }
