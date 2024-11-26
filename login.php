@@ -31,6 +31,7 @@ if (isset($_POST['name']) && isset($_POST['password'])) {
 		}
             elseif ($row['name'] === $uname && $row['password'] === $pass) {
             	$_SESSION['name'] = $row['name'];
+				$_SESSION['password'] = $row['password'];
                 $_SESSION['privilage'] = $row['privilage'];
             	$_SESSION['id'] = $row['userid'];
 				$sql2 = "INSERT INTO `log`( `userid`, `type`,`description`) VALUES ('".$row['userid']."','in','Logged in')";

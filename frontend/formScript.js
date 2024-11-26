@@ -75,28 +75,36 @@ function areYouSure(message, id, action, name) {
       }
     });
   }
-  function callScript(formid, page){
+  function callScript(formid, page) {
     const bodyuser = document.querySelector('body');
-        bodyuser.style.overflow = 'auto';
-  document.getElementById(formid).addEventListener("submit", function(e) {
-    e.preventDefault(); // Prevent form from submitting traditionally
-    
-    const formData = new FormData(this);
+    bodyuser.style.overflow = 'auto';
 
-    for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`);
-    }
+    document.getElementById(formid).addEventListener("submit", function(e) {
+        e.preventDefault(); // Prevent form from submitting traditionally
+        
+        const formData = new FormData(this);
 
-    fetch(page, {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => console.log("Server Response:", data))
-    .catch(error => console.error('Error:', error));
-});
-loadContent('users', document.getElementById("users-link"));
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+
+        fetch(page, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+        })
+        .then(data => {
+            console.log('Success:', data);
+            // Call loadContent only after successful form submission
+            loadContent('users', document.getElementById("users-link"));
+        })
+    });
 }
+
 
 function checkboxCheck(num){
     if(num==!undefined){
@@ -115,3 +123,19 @@ function remove(num){
     document.getElementById("checkbox").checked = false;
     }
 }
+function Delete(id, name) {
+    var password = prompt("Delete Username:"+name+"\nInput password to continue:");
+    if (password === null || password.trim() === "") {
+        alert("Deletion canceled or invalid input.");
+        return;  // Exit the function if the prompt was canceled or empty
+    }
+        $.post('scripts/deleteUser.php', { id: id, password: password, name: name}, function(result) { 
+            if (result == "Wrong"){
+                alert("Wrong Password, Logging out!");
+                window.location.replace("../logout.php");
+            }else{
+                alert(result);
+                loadContent('users', document.getElementById("users-link"));
+            }; 
+         });
+      };

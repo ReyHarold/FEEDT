@@ -21,6 +21,7 @@ $privilage = explode(",",$_SESSION['privilage']);
     <link rel="stylesheet" href="css/table.css">
     <link rel="stylesheet" href="css/formstyle.css">
     <script src="../backend/showandhide_script.js"></script>
+    <script src="https://kit.fontawesome.com/1fc4ea1c6a.js"></script>
     <title>FeedTrack</title>
     <body>
         <div class= "nav-header">
@@ -78,6 +79,7 @@ $privilage = explode(",",$_SESSION['privilage']);
     xhr.send();
 };
         </script>
+        <script src="search.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="formScript.js"></script>
     </html>
