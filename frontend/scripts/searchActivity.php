@@ -12,13 +12,13 @@ $query = isset($_GET['query']) ? $_GET['query'] : '';
 $searchFor="";
 // Use prepared statements to prevent SQL injection
 if(trim($query) === ''){
-$sql = "SELECT user.email,user.name, user_pic, log.description, log.date FROM log LEFT JOIN user ON log.userid = user.userid ORDER BY log.date DESC;";
+$sql = "SELECT user.email,user.name, user_pic, log.description, log.date FROM log LEFT JOIN user ON log.userid = user.userid WHERE DATE(log.date) = CURRENT_DATE ORDER BY log.date DESC;";
 }else{
 $sql = "SELECT user.email, user.name, user_pic, log.description, log.date 
         FROM log 
         LEFT JOIN user ON log.userid = user.userid 
         WHERE user.name LIKE ? OR log.description LIKE ? OR log.date LIKE ? 
-        ORDER BY log.date DESC";
+        ORDER BY log.date DESC LIMIT 20";
 };
 $stmt = $conn->prepare($sql);
 $searchTerm = '%' . $query . '%';

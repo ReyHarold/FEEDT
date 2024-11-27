@@ -60,13 +60,17 @@
     <div class="box">
             <h2>All Activities</h2>
             <?php
-         $sql = "SELECT user.email,user.name, user_pic, log.description, log.date FROM log LEFT JOIN user ON log.userid = user.userid ORDER BY log.date DESC;";
+         $sql = "SELECT user.email, user.name, user.user_pic, log.description, log.date 
+                    FROM log 
+                    LEFT JOIN user ON log.userid = user.userid 
+                    WHERE DATE(log.date) = CURRENT_DATE 
+                    ORDER BY log.date DESC;";
          $result = mysqli_query($conn, $sql);
          $count = 0;
          ?>
          <div class="search-box">
             <button class="btn-search" id="activitySearch"><i class="fas fa-search"></i></button>
-            <input type="text" id="searchInput" onfocus="addSearch('activitySearch','activityContent','searchInput','searchActivity')" onblur="removeSearch('activitySearch')" class="input-search" id="searchInput" placeholder="Type to Search...">
+            <input type="text" id="searchInput" onfocus="addSearch('activitySearch','activityContent','searchInput','searchActivity','searchActivityshow')" onblur="removeSearch('activitySearch')" class="input-search" id="searchInput" placeholder="Type to Search...">
         </div>
             <table id="activityContent" class="table">
             <thead>
@@ -87,8 +91,7 @@
             }else{
             echo"<tr class='activity rowb hide'>";
             }
-            echo '<td class="profile"><img class="circle" src="data:image/png;base64,'.base64_encode($row['user_pic']).'" alt="Profile">';
-            echo  "<div class='activity-info'>".$row["name"]."</div></td>";
+            echo '<td><div class="profile"><img class="circle" src="data:image/png;base64,'.base64_encode($row['user_pic']).'" alt="Profile">'.$row["name"].'</div></td>';
             echo  "<td class='activity-email'>".$row["description"]."</td>";
             echo  "<td class='activity-date'>".$row["date"]."</td></tr>";
             $count++;
@@ -97,13 +100,13 @@
          ?>
          </table>
         </br>
-                <div class="activity"><button onclick="fetchData(true, this,'activity')" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Activities</button><button onclick="fetchData(false, this, 'activity')" class="hideshow hide other-activities-button ">Hide Activities</button></div>
+                <div class="activity"><button id="searchActivityshow" onclick="fetchData(true, this,'activity')" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Activities</button><button onclick="fetchData(false, this, 'activity')" class="hideshow hide other-activities-button ">Hide Activities</button></div>
         </div>
         <div class="box">
         <h2>All Accounts</h2>
         <div class="search-box">
             <button class="btn-search" id="accountSearch"><i class="fas fa-search"></i></button>
-            <input type="text" id="searchAccounts" onfocus="addSearch('accountSearch','accountContent','searchAccounts','searchAccount')" class="input-search" placeholder="Type to Search...">
+            <input type="text" id="searchAccounts" onfocus="addSearch('accountSearch','accountContent','searchAccounts','searchAccount','searchAccountshow')" class="input-search" placeholder="Type to Search...">
         </div><br>
         <table class="table">
         <thead>
@@ -113,7 +116,7 @@
                         <th>Date</th>
                     </tr>
                 </thead>
-                <tbody id="activityContent">
+                <tbody id="accountContent">
         <?php
         $sql2 = "SELECT * from user";
         $count = 0;
@@ -130,7 +133,7 @@
                     $email = htmlspecialchars($row2["email"], ENT_QUOTES, 'UTF-8');
                     $privilageArray = explode(',', $row2["privilage"]); // Convert string to array
                     $privilage = json_encode($privilageArray); // Convert to JSON
-            echo '<td class="profile"><div class="img-container"><img class="circle" src="data:image/png;base64,'.base64_encode($row2['user_pic']).'" alt="Profile"></div>';
+            echo '<td><div class="profile"><img class="circle" src="data:image/png;base64,'.base64_encode($row2['user_pic']).'" alt="Profile">';
             echo  "<div class='activity-info'>".$row2["name"]."</div></td>";
             echo '<td class="account-email">'.$row2["email"].'</td>';
             echo  "<td><div class='account-actions'>
@@ -147,5 +150,5 @@
         ?>
         </table>
         </br>
-        <div class="account"><button onclick="fetchData(true, this, 'account' )" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Accounts</button><button onclick="fetchData(false, this, 'account')" class="hideshow hide other-activities-button ">Hide Accounts</button></div>
+        <div class="account"><button id="searchAccountshow" onclick="fetchData(true, this, 'account' )" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Accounts</button><button onclick="fetchData(false, this, 'account')" class="hideshow hide other-activities-button ">Hide Accounts</button></div>
         </div>

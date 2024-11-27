@@ -1,5 +1,5 @@
 // Define the function to be added to the button
-function Search(table, inputId, phpscript) {
+function Search(table, inputId, phpscript,showmore) {
     let query = document.getElementById(inputId).value;
 
     // AJAX request
@@ -17,16 +17,16 @@ function Search(table, inputId, phpscript) {
                             let activityClass = count < 5 ? 'activity' : 'activity rowb hide';
 
                             resultsDiv.innerHTML += `
-                            <div class='${activityClass}'>
-                                <div class="profile">
-                                    <div class="img-container">
+                            <tr class='${activityClass}'>
+                                <td>
+                                    <div class="profile">
                                         <img class="circle" src="data:image/png;base64,${item.user_pic}" alt="Profile">
+                                        ${item.name}
                                     </div>
-                                    <div class='activity-info'>${item.name}</div>
-                                </div>
-                                <div class='activity-email'>${item.description}</div>
-                                <div class='activity-date'>${item.date}</div>
-                            </div>`;
+                                <td>
+                                <td class='activity-email'>${item.description}</td>
+                                <td class='activity-date'>${item.date}</td>
+                            </tr>`;
 
                             count++;
                         break;
@@ -40,20 +40,22 @@ function Search(table, inputId, phpscript) {
                         `<button class='btn btn-suspend ${item.userid}' onclick='areYouSure(\"Suspend Name: ${item.name} ?","${item.userid}", \"suspend\" ,"${item.name}")'>Suspend</button>` : 
                         `<button class='btn btn-resume ${item.userid}' onclick='areYouSure(\"Resume Name: ${item.name} ?", "${item.userid}", \"resume\", "${item.name}")'>Resume</button>`;
                         resultsDiv.innerHTML += `
-                            <div class='${accountClass}'>
-                                    <div class="profile">
-                                        <div class="img-container">
+                            <tr class='${accountClass}'>
+                                    <td>
+                                        <div class="profile">
                                             <img class="circle" alt="Profile" src="data:image/png;base64,${item.user_pic}">
+                                            ${item.name}
                                         </div>
-                                        <div class="activity-info">${item.name}</div>
-                                    </div>
-                                    <div class="account-email">${item.email}</div>
+                                    </td>
+                                    <td class="account-email">${item.email}</td>
+                                    <td>
                                     <div class="account-actions">
                                         <button class="btn btn-privilege ${item.userid}" onclick="usersForm('user','${item.userid}', '${item.name}','${item.email}',[${item.privilage.map(priv => `'${priv}'`).join(", ")}])">Edit</button>
                                         `+button+`
                                         <button class='btn btn-delete' onclick = 'Delete(\""${item.id}"\", \""${item.name}"\")'>Delete</button>
                                     </div>
-                                </div>
+                                    </td>
+                                </tr>
                                 `
                             count++;
                         break;
@@ -62,6 +64,14 @@ function Search(table, inputId, phpscript) {
             } else {
                 resultsDiv.innerHTML = 'No results found.';  // Display when no results
             }
+                        if(showmore){
+                            let showmorebutt = document.getElementById(showmore);
+                            if(count>5){
+                            showmorebutt.classList.remove("hide")
+                            }else{
+                            showmorebutt.classList.add("hide")
+                            }
+                        }
         })
         .catch(error => console.error('Error:', error));
 }
@@ -69,11 +79,11 @@ function Search(table, inputId, phpscript) {
 
 
 // Add the event listener to add the onclick function
-function addSearch(buttonId, table, inputId, phpscript) {
+function addSearch(buttonId, table, inputId, phpscript, showmore) {
     var button = document.getElementById(buttonId);
     // Use an anonymous function to delay calling searchFunction
     button.onclick = function() {
-        Search(table, inputId, phpscript);
+        Search(table, inputId, phpscript, showmore);
     };
 }
 

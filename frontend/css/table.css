@@ -50,6 +50,7 @@
     width: 50px;
     border-radius: 100%;
     object-fit: cover;
+    padding-left: 10px;
 }
 .table th {
     background-color: #628338;
