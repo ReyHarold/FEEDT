@@ -1,7 +1,6 @@
 // Define the function to be added to the button
 function Search(table, inputId, phpscript,showmore) {
     let query = document.getElementById(inputId).value;
-
     // AJAX request
     fetch('scripts/'+phpscript+'.php?query=' + encodeURIComponent(query))
         .then(response => response.json())
@@ -59,6 +58,18 @@ function Search(table, inputId, phpscript,showmore) {
                                 `
                             count++;
                         break;
+
+                        case "inventoryContent":
+                        resultsDiv.innerHTML +=`<tr class='activity'>
+                         <td>${item.item}</td>
+                          <td>${item.quantity}</td>
+                          <td>₱${item.price}</td>
+                          <td class='account-actions'>
+                        <button class='btn btn-edit'>Edit</button>
+                            <button class='btn btn-delete'>Delete</button>
+                        </td></tr>`;
+                        break;
+
                     }
                 });
             } else {

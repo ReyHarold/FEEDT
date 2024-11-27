@@ -32,11 +32,14 @@
             </form>
         </div>
     </div>
+    <div class="box">
+    <h2>Inventory Report</h2>
+    </div>
        <div class="box">
                 <h2>Inventory</h2>
                 <div class="search-box">
-            <button class="btn-search" id="activitySearch"><i class="fas fa-search"></i></button>
-            <input type="text" id="searchInput" onfocus="addSearch('activitySearch','inventoryContent','searchInput','searchActivity')" onblur="removeSearch('activitySearch')" class="input-search" id="searchInput" placeholder="Type to Search...">
+            <button class="btn-search" id="inventorySearch"><i class="fas fa-search"></i></button>
+            <input type="text" id="searchInput" onfocus="addSearch('inventorySearch','inventoryContent','searchInput','searchInventory')" onblur="removeSearch('inventorySearch')" class="input-search" id="searchInput" placeholder="Type to Search...">
                 </div></br>
                 <div class="actions">
                     <button class="add-item-btn" onclick="usersForm('inventoryAdd')">Add Item</button>
