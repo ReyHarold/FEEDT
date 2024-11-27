@@ -1,12 +1,49 @@
-<script src="https://kit.fontawesome.com/1fc4ea1c6a.js"></script>
-  <div class="box">
+ <div class="box">
             <h2>All Activities</h2>
             
          <div class="search-box">
             <button class="btn-search"><i class="fas fa-search"></i></button>
             <input type="text" class="input-search" placeholder="Type to Search...">
-        </div></div>
+        </div>
+        
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Date</th>
+                    <th>Raw Materials Used</th>
+                    <th>Finished Product</th>
+                    <th>Quantity Produced(UoM)</th>
+                    </tr>
+                </thead>
+            <tbody>
+                <tr>
+                    <td>November 20, 2024</td>
+                    <td>Yellow Corn, Soya, Copra, Rice Bran (D1), Coconut Oil</td>
+                    <td>Laying Mash</td>
+                    <td>50kgs</td>
+                </tr>
 
+                <tr>
+                    <td>November 21, 2024</td>
+                    <td>Yellow Corn, Soya, Copra, Rice Bran (D1), Coconut Oil</td>
+                    <td>Hog starter</td>
+                    <td>50kgs</td>
+                </tr>
+                
+                <tr>
+                    <td>November 22, 2024</td>
+                    <td>Yellow Corn, Soya, Copra, Rice Bran (D1), Coconut Oil</td>
+                    <td>Hog grower</td>
+                    <td>50kgs</td>
+                </tr>
+                
+                <tr>
+                    <td>November 23, 2024</td>
+                    <td>Yellow Corn, Soya, Copra, Rice Bran (D1), Coconut Oil</td>
+                    <td>Hog breeder</td>
+                    <td>50kgs</td>
+                </tr>   
+            </tbody>
 </div> 
 <style>
 .box {
@@ -68,5 +105,5 @@
         background-color: transparent;
         border-bottom:1px solid rgba(255,255,255,.5);
         transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
-
+      }
 </style>
