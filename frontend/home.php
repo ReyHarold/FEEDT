@@ -2,7 +2,7 @@
         error_reporting(0);
         include "../backend/resession.php";
         include "../conn.php";
-        $sql = "SELECT log.*,user.name, user.user_pic from log Left Join user on log.userid = user.userid WHERE log.userid = $id ORDER BY log.date DESC;" ;
+        $sql = "SELECT log.*,user.name, user.user_pic from log Left Join user on log.userid = user.userid WHERE log.userid ORDER BY log.date DESC LIMIT 10;" ;
          $result = mysqli_query($conn, $sql);
          $asd = mysqli_query($conn, $sql);
     ?>

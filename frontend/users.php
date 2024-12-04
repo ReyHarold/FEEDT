@@ -57,51 +57,6 @@
             </form>
         </div>
     </div>
-    <div class="box">
-            <h2>All Activities</h2>
-            <?php
-         $sql = "SELECT user.email, user.name, user.user_pic, log.description, log.date 
-                    FROM log 
-                    LEFT JOIN user ON log.userid = user.userid 
-                    WHERE DATE(log.date) = CURRENT_DATE 
-                    ORDER BY log.date DESC;";
-         $result = mysqli_query($conn, $sql);
-         $count = 0;
-         ?>
-         <div class="search-box">
-            <button class="btn-search" id="activitySearch"><i class="fas fa-search"></i></button>
-            <input type="text" id="searchInput" onfocus="addSearch('activitySearch','activityContent','searchInput','searchActivity','searchActivityshow')" onblur="removeSearch('activitySearch')" class="input-search" id="searchInput" placeholder="Type to Search...">
-        </div>
-            <table id="activityContent" class="table">
-            <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody id="activityContent">
-         <?php
-         if(mysqli_num_rows($result)==0){
-            echo "<tr><td></td>You have no activities</tr><td></td>";
-         }else{
-            while($row= mysqli_fetch_assoc($result)){
-            if($count<5){
-            echo"<tr class='activity'>";
-            }else{
-            echo"<tr class='activity rowb hide'>";
-            }
-            echo '<td><div class="profile"><img class="circle" src="data:image/png;base64,'.base64_encode($row['user_pic']).'" alt="Profile">'.$row["name"].'</div></td>';
-            echo  "<td class='activity-email'>".$row["description"]."</td>";
-            echo  "<td class='activity-date'>".$row["date"]."</td></tr>";
-            $count++;
-            }
-        };
-         ?>
-         </table>
-        </br>
-                <div class="activity"><button id="searchActivityshow" onclick="fetchData(true, this,'activity')" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Activities</button><button onclick="fetchData(false, this, 'activity')" class="hideshow hide other-activities-button ">Hide Activities</button></div>
-        </div>
         <div class="box">
         <h2>All Accounts</h2>
         <div class="search-box">
@@ -151,4 +106,52 @@
         </table>
         </br>
         <div class="account"><button id="searchAccountshow" onclick="fetchData(true, this, 'account' )" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Accounts</button><button onclick="fetchData(false, this, 'account')" class="hideshow hide other-activities-button ">Hide Accounts</button></div>
+        </div>
+
+        <div class="box">
+            <h2>All Activities</h2>
+            <?php
+         $sql = "SELECT user.email, user.name, user.user_pic, log.description, log.date 
+                    FROM log 
+                    LEFT JOIN user ON log.userid = user.userid 
+                    WHERE DATE(log.date) = CURRENT_DATE 
+                    ORDER BY log.date DESC;";
+         $result = mysqli_query($conn, $sql);
+         $count = 0;
+         ?>
+         <div class="search-box">
+            <button class="btn-search" id="activitySearch"><i class="fas fa-search"></i></button>
+            <input type="text" id="searchInput" onfocus="addSearch('activitySearch','activityContent','searchInput','searchActivity','searchActivityshow')" onblur="removeSearch('activitySearch')" class="input-search" id="searchInput" placeholder="Type to Search...">
+        </div>
+            <table class="table">
+            <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="activityContent">
+         <?php
+         if(mysqli_num_rows($result)==0){
+            echo "<tr><td></td>You have no activities</tr><td></td>";
+         }else{
+            while($row= mysqli_fetch_assoc($result)){
+            if($count<5){
+            echo"<tr class='activity'>";
+            }else{
+            echo"<tr class='activity rowb hide'>";
+            }
+            echo '<td><div class="profile">
+            <img class="circle" src="data:image/png;base64,'.base64_encode($row['user_pic']).'" alt="Profile">'.$row["name"].'
+                </div></td>';
+            echo  "<td class='activity-email'>".$row["description"]."</td>";
+            echo  "<td class='activity-date'>".$row["date"]."</td></tr>";
+            $count++;
+            }
+        };
+         ?>
+         </table>
+        </br>
+                <div class="activity"><button id="searchActivityshow" onclick="fetchData(true, this,'activity')" class="hideshow <?php if($count<5){echo"hide";};?> other-activities-button">Show All Activities</button><button onclick="fetchData(false, this, 'activity')" class="hideshow hide other-activities-button ">Hide Activities</button></div>
         </div>

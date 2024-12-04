@@ -20,7 +20,7 @@ if (isset($_POST['name']) && isset($_POST['password'])) {
         header("Location: index.php?error=Password is required");
 	    exit();
 	}else{
-		$sql = "SELECT * FROM user WHERE name='$uname' AND password='$pass'";
+		$sql = "SELECT * FROM user WHERE name='$uname' AND password='$pass' OR email='$uname' AND password='$pass'";
 
 		$result = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($result) === 1) {
@@ -29,7 +29,7 @@ if (isset($_POST['name']) && isset($_POST['password'])) {
 				header("Location: index.php?error=Account is suspended!");
 				exit();
 		}
-            elseif ($row['name'] === $uname && $row['password'] === $pass) {
+            elseif ($row['name'] === $uname || $row['email'] === $uname && $row['password'] === $pass) {
             	$_SESSION['name'] = $row['name'];
 				$_SESSION['password'] = $row['password'];
                 $_SESSION['privilage'] = $row['privilage'];

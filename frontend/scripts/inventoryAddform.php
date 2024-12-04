@@ -4,7 +4,9 @@ session_start();
 $name = $_POST["addItem"];
 $quantity = $_POST["addQuantity"];
 $price = $_POST["addPrice"];
-$sql2 = "INSERT INTO `inventory`(`item`, `quantity`, `price`) VALUES ('".$name."','".$quantity."','".$price."')";
+$minlvl = $_POST["minLvlAdd"];
+$maxlvl = $_POST["maxLvlAdd"];
+$sql2 = "INSERT INTO `inventory`(`item`, `quantity`, `price`, `maximumlvl`, `minimumlvl`) VALUES ('".$name."','".$quantity."','".$price."','".$maxlvl."','".$minlvl."')";
 $result2 = mysqli_query($conn, $sql2);
 
 

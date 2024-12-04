@@ -22,7 +22,7 @@ function Search(table, inputId, phpscript,showmore) {
                                         <img class="circle" src="data:image/png;base64,${item.user_pic}" alt="Profile">
                                         ${item.name}
                                     </div>
-                                <td>
+                                </td>
                                 <td class='activity-email'>${item.description}</td>
                                 <td class='activity-date'>${item.date}</td>
                             </tr>`;
@@ -64,6 +64,8 @@ function Search(table, inputId, phpscript,showmore) {
                          <td>${item.item}</td>
                           <td>${item.quantity}</td>
                           <td>₱${item.price}</td>
+                          <td>₱${item.minLvl}</td>
+                          <td>₱${item.maxLvl}</td>
                           <td class='account-actions'>
                         <button class='btn btn-edit'>Edit</button>
                             <button class='btn btn-delete'>Delete</button>

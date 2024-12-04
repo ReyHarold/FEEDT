@@ -14,11 +14,23 @@ function showForm(page) {
     bodymain.style.overflow = 'hidden';
     break;
         case "inventoryAdd":
+    const popupForminventoryAdd = document.querySelector('.PopinventoryAdd');
+    const bodyinventoryAdd = document.querySelector('body');
+    popupForminventoryAdd.style.display = 'flex';
+    bodyinventoryAdd.style.overflow = 'hidden';
+    break;
+    case "production":
+    const popupFormproduction = document.querySelector('.Popproduction');
+    const bodyproduction = document.querySelector('body');
+    popupFormproduction.style.display = 'flex';
+    bodyproduction.style.overflow = 'hidden';
+        break;
+    case "inventory":
     const popupForminventory = document.querySelector('.Popinventory');
     const bodyinventory = document.querySelector('body');
     popupForminventory.style.display = 'flex';
     bodyinventory.style.overflow = 'hidden';
-    break;
+        break;
     }
 }
 
@@ -50,16 +62,36 @@ function hideForm(page) {
         popupFormmain.style.display = 'none';
     break;
     case "inventoryAddform":
-        const popupFormaddInventory = document.querySelector('.Popinventory');
+        const popupFormaddInventory = document.querySelector('.PopinventoryAdd');
         const bodyaddInventory = document.querySelector('body');
             bodyaddInventory.style.overflow = 'auto';
             popupFormaddInventory.style.display = 'none';
         
         document.getElementById("addItem").value= " ";
-        document.getElementById("addQuantity").value= " ";
-        document.getElementById("addPrice").value= " ";
+        document.getElementById("addQuantity").value= 0;
+        document.getElementById("addPrice").value= 0;
+        document.getElementById("minLvlAdd").value= 0;
+        document.getElementById("maxLvlAdd").value= 0;
+    break;
+    case "production":
+        const popupFormproduction = document.querySelector('.Popproduction');
+        const bodyproduction = document.querySelector('body');
+        bodyproduction.style.overflow = 'auto';
+        popupFormproduction.style.display = 'none';
     break;
 
+    case "inventory":
+    const popupFormInventory = document.querySelector('.Popinventory');
+        const bodyInventory = document.querySelector('body');
+        bodyInventory.style.overflow = 'auto';
+        popupFormInventory.style.display = 'none';
+        
+        document.getElementById("item").value= " ";
+        document.getElementById("quantity").value= 0;
+        document.getElementById("price").value= 0;
+        document.getElementById("minLvl").value= 0;
+        document.getElementById("maxLvl").value= 0;
+    break;
 }
 }
 
@@ -79,6 +111,15 @@ function usersForm(page, id, name, email, privilage){
         break;
 
         case "inventory":
+            document.getElementById("inventoryid").value= id;
+            document.getElementById("item").value= name;
+            document.getElementById("price").value= email;
+            document.getElementById("quantity").value= privilage[0];
+            document.getElementById("minLvl").value= privilage[1];
+            document.getElementById("maxLvl").value= privilage[2];
+        break;
+
+        case "production":
 
         break;
     }
