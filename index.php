@@ -111,8 +111,6 @@
 </head>
 <body>
     <div class="header">
-        <img src="logo.png">
-        <span>FeedTrack</span>
     </div>
 
     <div class="container">

@@ -1,3 +1,14 @@
+button {
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    transition: 0.3s;
+}
+button:hover {
+    scale: 1.1;
+}
+
 .other-activities-button, .activity-btn {
     padding: 10px;
     background-color: #86DD70;
@@ -41,4 +52,3 @@
 .btn-delete { background-color: #c0392b; }
 .btn-edit { background-color: #27ae60; }
 .btn-delete { background-color: #c0392b; }
-.btn-search { background-color: #27ae60; }

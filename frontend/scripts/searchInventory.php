@@ -1,36 +1,33 @@
 <?php
-header('Content-Type: application/json');
+// Include the necessary files for session and database connection
+error_reporting(E_ALL); // Enable full error reporting to debug issues
 include "../../conn.php";
 
-// Check connection
-if ($conn->connect_error) {
-    die(json_encode(["error" => "Database connection failed"]));
-}
-
-// Retrieve query
+// Get the search query from the request
 $query = isset($_GET['query']) ? $_GET['query'] : '';
 
-// Use prepared statements to prevent SQL injection
-if(trim($query) === ''){
-$sql = "SELECT * from inventory;";
-}else{
-$sql = "SELECT * from inventory 
-        WHERE item LIKE ?";
-};
-$stmt = $conn->prepare($sql);
-$searchTerm = '%' . $query . '%';
-if(trim($query) === ''){}else{
-$stmt->bind_param("s", $searchTerm);
-}
-$stmt->execute();
-$result = $stmt->get_result();
-$results = [];
-if ($result && $result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $results[] = $row;
-    }
+// Escape special characters in the query to prevent SQL injection
+$query = mysqli_real_escape_string($conn, $query);
+
+// Prepare the SQL query
+$sql = "SELECT * FROM inventory WHERE item LIKE '%$query%' OR feed LIKE '%$query%'";
+
+// Execute the query
+$result = mysqli_query($conn, $sql);
+
+// Check if the query was successful
+if (!$result) {
+    die("Query failed: " . mysqli_error($conn)); // Debugging query error
 }
 
-echo json_encode($results);
-$conn->close();
+// Create an array to hold the results
+$items = [];
+
+// Fetch results
+while ($row = mysqli_fetch_assoc($result)) {
+    $items[] = $row; // Add each item to the results array
+}
+
+// Return the results as JSON
+echo json_encode($items);
 ?>

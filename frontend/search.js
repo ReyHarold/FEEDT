@@ -1,93 +1,70 @@
-// Define the function to be added to the button
-function Search(table, inputId, phpscript,showmore) {
+function Search(table, inputId, phpscript, showmore) {
+
     let query = document.getElementById(inputId).value;
+
     // AJAX request
-    fetch('scripts/'+phpscript+'.php?query=' + encodeURIComponent(query))
+    fetch('scripts/' + phpscript + '.php?query=' + encodeURIComponent(query))
         .then(response => response.json())
         .then(data => {
             let resultsDiv = document.getElementById(table);
-            var count = 0;
-            resultsDiv.innerHTML = '';  // Clear previous results first
+            let count = 0;
+
+            // Clear previous results first
+            resultsDiv.innerHTML = '';
+
             if (data.length > 0) {
                 data.forEach(item => {
-                    switch(table){
-                        case "activityContent":
-                            // Debugging: log class names assigned
-                            let activityClass = count < 5 ? 'activity' : 'activity rowb hide';
-
-                            resultsDiv.innerHTML += `
-                            <tr class='${activityClass}'>
-                                <td>
-                                    <div class="profile">
-                                        <img class="circle" src="data:image/png;base64,${item.user_pic}" alt="Profile">
-                                        ${item.name}
-                                    </div>
-                                </td>
-                                <td class='activity-email'>${item.description}</td>
-                                <td class='activity-date'>${item.date}</td>
-                            </tr>`;
-
-                            count++;
-                        break;
-
-                        case "accountContent":
-                            if (typeof item.privilage === 'string') {
-                                item.privilage = item.privilage.split(',');  // Convert string to array
-                            }
-                        let accountClass = count < 5 ? 'account' : 'account rowb hide';
-                        let button = item.active == "true" ?
-                        `<button class='btn btn-suspend ${item.userid}' onclick='areYouSure(\"Suspend Name: ${item.name} ?","${item.userid}", \"suspend\" ,"${item.name}")'>Suspend</button>` : 
-                        `<button class='btn btn-resume ${item.userid}' onclick='areYouSure(\"Resume Name: ${item.name} ?", "${item.userid}", \"resume\", "${item.name}")'>Resume</button>`;
-                        resultsDiv.innerHTML += `
-                            <tr class='${accountClass}'>
-                                    <td>
-                                        <div class="profile">
-                                            <img class="circle" alt="Profile" src="data:image/png;base64,${item.user_pic}">
-                                            ${item.name}
-                                        </div>
-                                    </td>
-                                    <td class="account-email">${item.email}</td>
-                                    <td>
-                                    <div class="account-actions">
-                                        <button class="btn btn-privilege ${item.userid}" onclick="usersForm('user','${item.userid}', '${item.name}','${item.email}',[${item.privilage.map(priv => `'${priv}'`).join(", ")}])">Edit</button>
-                                        `+button+`
-                                        <button class='btn btn-delete' onclick = 'Delete(\""${item.id}"\", \""${item.name}"\")'>Delete</button>
-                                    </div>
-                                    </td>
-                                </tr>
-                                `
-                            count++;
-                        break;
-
-                        case "inventoryContent":
-                        resultsDiv.innerHTML +=`<tr class='activity'>
-                         <td>${item.item}</td>
-                          <td>${item.quantity}</td>
-                          <td>₱${item.price}</td>
-                          <td>₱${item.minLvl}</td>
-                          <td>₱${item.maxLvl}</td>
-                          <td class='account-actions'>
-                        <button class='btn btn-edit'>Edit</button>
-                            <button class='btn btn-delete'>Delete</button>
-                        </td></tr>`;
-                        break;
-
-                    }
+                    switch(phpscript){
+                        case "searchInventory":
+                    resultsDiv.innerHTML = `
+                        <tr class="activity">
+                            <td>${item.item}</td>
+                            <td>${item.quantity}</td>
+                            <td>₱${item.price}</td> 
+                            <td>${item.maximumlvl}</td>
+                            <td>${item.minimumlvl}</td>
+                            <td class="account-actions">
+                                <button class="btn btn-edit" onclick="usersForm(
+                                    'inventory',
+                                    '${item.itemID}',
+                                    '${item.item}',
+                                    '${item.price}',
+                                    ['${item.quantity}', '${item.minimumlvl}', '${item.maximumlvl}', '${item.type}', '${item.feed.charAt(0).toUpperCase() + item.feed.slice(1)}']
+                                )">Edit</button>
+                                <button class="btn btn-delete" onclick="Delete('${item.itemID}', '${item.item}')">Delete</button>
+                            </td>
+                        </tr>`;
+                    count++;
+                    break;
+                    case "searchProduction":
+                        resultsDiv.innerHTML = `
+                        <tr class="activity">
+                            <td>${item.type}</td>
+                            <td>${item.item}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.ingredients}</td>
+                            <td>${item.start_date}</td>
+                            <td>${item.end_date}</td>
+                            <td>${item.status}</td>
+                            <td class="account-actions">
+                                <button class="btn btn-edit">Edit</button>
+                                <button class="btn btn-delete">Delete</button>
+                            </td>
+                        </tr>`;
+                    break;
+                }
                 });
             } else {
-                resultsDiv.innerHTML = 'No results found.';  // Display when no results
+                resultsDiv.innerHTML = 'No results found.';  // Display message if no results
             }
-                        if(showmore){
-                            let showmorebutt = document.getElementById(showmore);
-                            if(count>5){
-                            showmorebutt.classList.remove("hide")
-                            }else{
-                            showmorebutt.classList.add("hide")
-                            }
-                        }
+
         })
         .catch(error => console.error('Error:', error));
 }
+
+
+
+
 
 
 

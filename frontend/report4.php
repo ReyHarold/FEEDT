@@ -1,64 +1,76 @@
-<div class="user-panel">
-        <div class="user-panel-header">
-        <div class="graph-checkbox">
-            <div class="user-actions">
-            <div class="actions">
-                <label>Graph</label>
-                <input type="checkbox">
-                </div>
-            <div class="actions">
-                <label>Item</label>
-                <input type="text" >
-                </div>
-            </div>
-    </div>
-</div>
-    <table class="inventory-table">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox">Select All</th>
-                            <th><input type="checkbox">Days of Stock</th>
-                            <th><input type="checkbox">Lead Time</th>
-                            <th><input type="checkbox">Stockout Date</th>
-                            <th><input type="checkbox">Suggested Order</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <td><input type="checkbox">Swine Feed</td>
-                        <td>10-10-22</td>
-                        <td>10-10-22</td>
-                        <td>20 units</td>
-                        <td>200</td>
-                        </tr>
-                        <tr>
-                        <td><input type="checkbox">Swine Feed</td>
-                        <td>10-10-22</td>
-                        <td>10-10-22</td>
-                        <td>20 units</td>
-                        <td>200</td>
-                        </tr>
-                        <tr>
-                        <td><input type="checkbox">Swine Feed</td>
-                        <td>10-10-22</td>
-                        <td>10-10-22</td>
-                        <td>20 units</td>
-                        <td>200</td>
-                        </tr>
-                        <tr>
-                        <td><input type="checkbox">Swine Feed</td>
-                        <td>10-10-22</td>
-                        <td>10-10-22</td>
-                        <td>20 units</td>
-                        <td>200</td>
-                        </tr>
-                        <tr>
-                        <td><input type="checkbox">Swine Feed</td>
-                        <td>10-10-22</td>
-                        <td>10-10-22</td>
-                        <td>20 units</td>
-                        <td>200</td>
-                        </tr>
-                    </tbody>
+<?php
+error_reporting(0);
+include "../backend/resession.php";
+include "../conn.php";
+
+// Get all production data
+$productionSql = "
+    SELECT 
+        production.production_id, 
+        production.item, 
+        production.quantity, 
+        production.start_date, 
+        production.end_date, 
+        production.status 
+    FROM production
+    ORDER BY production.start_date DESC
+";
+
+$productionResult = $conn->query($productionSql);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Production Report</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div id="printableArea">
+    <h2 style="color:black;">Production Report</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Batch ID</th>
+                <th>Product</th>
+                <th>Quantity Produced</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php while ($row = $productionResult->fetch_assoc()): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($row['production_id']); ?></td>
+                    <td><?php echo htmlspecialchars($row['item']); ?></td>
+                    <td><?php echo htmlspecialchars($row['quantity']); ?></td>
+                    <td><?php echo htmlspecialchars($row['start_date']); ?></td>
+                    <td><?php echo htmlspecialchars($row['end_date']); ?></td>
+                    <td><?php echo htmlspecialchars($row['status']); ?></td>
+                </tr>
+            <?php endwhile; ?>
+        </tbody>
     </table>
-    <button class="Print-button">Print</button>
+    </div>
+    <button type="button" onclick="printReport()">Print</button>    
+</body>
+</html>
+
+<?php
+$conn->close();
+?>
