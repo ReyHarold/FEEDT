@@ -1,28 +1,16 @@
 <?php
 session_start();
 include "../../conn.php";
+include "../../backend/verify_password.php";
 
 // Get user input
 $orderId = $_POST['orderId'];
 $password = $_POST['password'];
-$userid = $_SESSION['id'];
 
 try {
-    // Fetch the user's password from the database
-    $stmt = $conn->prepare("SELECT password FROM user WHERE userid = ?");
-    $stmt->bind_param("i", $userid);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows === 0) {
-        throw new Exception("User not found.");
-    }
-
-    $user = $result->fetch_assoc();
-    $storedPassword = $user['password'];
-
-    // Verify the entered password
-    if (!password_verify($password, $storedPassword)) {
+    // Verify the entered password against the logged-in user's stored
+    // credentials (supports bcrypt hashes and legacy plaintext rows).
+    if (!verify_current_user_password($conn, $password)) {
         throw new Exception("Incorrect password.");
     }
 

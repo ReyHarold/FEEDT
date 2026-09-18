@@ -52,5 +52,3 @@ if (isset($stmt3)) $stmt3->close();
 $stmtLog->close();
 $conn->close();
 ?>
-
-?>
