@@ -240,6 +240,58 @@
             color: var(--muted);
         }
 
+        /* Demo credentials */
+        .demo {
+            margin-top: 24px;
+            border: 1px dashed var(--line);
+            border-radius: 12px;
+            background: #fbfcf9;
+            padding: 14px 16px;
+        }
+        .demo-head {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--brand-dark);
+            margin-bottom: 10px;
+        }
+        .demo-head svg { flex-shrink: 0; }
+        .demo-grid { display: grid; gap: 8px; }
+        .demo-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            text-align: left;
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            padding: 10px 12px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: border-color .15s, box-shadow .15s;
+        }
+        .demo-btn:hover {
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(98, 131, 56, 0.1);
+        }
+        .demo-role { display: flex; flex-direction: column; gap: 2px; }
+        .demo-role strong { font-size: 13px; color: var(--ink); font-weight: 600; }
+        .demo-role span { font-size: 11px; color: var(--muted); }
+        .demo-cred {
+            font-size: 12px;
+            color: #374151;
+            font-family: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+            white-space: nowrap;
+        }
+        .demo-cred b { color: var(--brand-dark); font-weight: 600; }
+        .demo-hint { margin: 10px 0 0; font-size: 11px; color: var(--muted); text-align: center; }
+
         @media (max-width: 780px) {
             .card { grid-template-columns: 1fr; max-width: 440px; }
             .brand { display: none; }
@@ -317,6 +369,31 @@
                 <button type="submit">Sign In</button>
             </form>
 
+            <!-- Demo credentials -->
+            <div class="demo">
+                <div class="demo-head">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    Demo credentials
+                </div>
+                <div class="demo-grid">
+                    <button type="button" class="demo-btn" data-user="admin1" data-pass="123">
+                        <span class="demo-role">
+                            <strong>Administrator</strong>
+                            <span>Full access — all modules</span>
+                        </span>
+                        <span class="demo-cred"><b>admin1</b> / 123</span>
+                    </button>
+                    <button type="button" class="demo-btn" data-user="admin2" data-pass="123">
+                        <span class="demo-role">
+                            <strong>Staff</strong>
+                            <span>Inventory, Production, Reports, Users</span>
+                        </span>
+                        <span class="demo-cred"><b>admin2</b> / 123</span>
+                    </button>
+                </div>
+                <p class="demo-hint">Click a role to auto-fill, then press Sign In.</p>
+            </div>
+
             <p class="form-foot">Need access? Contact your administrator.</p>
         </main>
     </div>
@@ -333,6 +410,16 @@
                 pass.type = isPw ? 'text' : 'password';
                 eye.innerHTML = isPw ? hidden : shown;
                 btn.setAttribute('aria-label', isPw ? 'Hide password' : 'Show password');
+            });
+
+            // Auto-fill the form when a demo role is clicked.
+            var user = document.getElementById('username');
+            document.querySelectorAll('.demo-btn').forEach(function (b) {
+                b.addEventListener('click', function () {
+                    user.value = b.getAttribute('data-user');
+                    pass.value = b.getAttribute('data-pass');
+                    user.focus();
+                });
             });
         })();
     </script>
