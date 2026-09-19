@@ -20,7 +20,7 @@ $error = $_GET['error'] ?? '';
     <div class="card">
         <aside class="brand">
             <div class="brand-logo">
-                <span class="brand-mark">GW</span>
+                <img class="brand-mark" src="<?= e(url('assets/img/logo.jfif')) ?>" alt="Goodwill Farms logo">
                 <span><?= e(APP_NAME) ?></span>
             </div>
             <div class="brand-copy">

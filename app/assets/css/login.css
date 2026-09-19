@@ -23,6 +23,7 @@ body {
 .brand::after { content: ""; position: absolute; right: -80px; bottom: -80px; width: 260px; height: 260px; border-radius: 50%; background: rgba(255,255,255,.08); }
 .brand-logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; }
 .brand-mark { background: #fff; color: var(--brand-dark); font-weight: 800; font-size: 14px; width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; }
+img.brand-mark { object-fit: cover; padding: 3px; }
 .brand-copy { position: relative; z-index: 1; }
 .brand-copy h2 { font-size: 28px; line-height: 1.25; margin: 0 0 12px; font-weight: 800; }
 .brand-copy p { margin: 0; font-size: 15px; line-height: 1.6; color: rgba(255,255,255,.85); max-width: 34ch; }
